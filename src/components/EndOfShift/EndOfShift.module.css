@@ -1,0 +1,86 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 24px;
+}
+
+.card {
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+.shiftNum {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--amber);
+  font-family: var(--font-mono);
+}
+
+.sep { height: 0.5px; background: var(--border-lo); }
+
+.section { display: flex; flex-direction: column; gap: 5px; }
+
+.sectionTitle {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+.callCount, .clueCount {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text-hi);
+  font-family: var(--font-mono);
+}
+
+.eventText {
+  font-size: 12px;
+  color: var(--text-md);
+  line-height: 1.7;
+  font-style: italic;
+  padding: 10px 12px;
+  background: var(--bg-3);
+  border-radius: var(--r-sm);
+  border-left: 2px solid var(--amber-dim);
+}
+
+.nextBtn {
+  padding: 12px 0;
+  background: var(--amber-lo);
+  border: 0.5px solid var(--amber-dim);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--amber);
+  transition: background var(--t-fast);
+}
+
+.nextBtn:hover { background: rgba(212,144,10,0.22); border-color: var(--amber); }

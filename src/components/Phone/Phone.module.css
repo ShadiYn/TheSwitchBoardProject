@@ -1,0 +1,115 @@
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.phone {
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ringing {
+  animation: ringShake 0.5s ease-in-out infinite;
+}
+
+@keyframes ringShake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  60% { transform: translateX(2px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ringing { animation: none; }
+}
+
+.ringRow {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ringDot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--text-lo);
+  transition: background 0.2s;
+}
+
+.ringDot.active {
+  background: var(--amber);
+  box-shadow: 0 0 6px var(--amber);
+}
+
+.callerCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.callerEmoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.callerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.callerName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-hi);
+}
+
+.callerMood {
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+}
+
+.relHint {
+  font-size: 10px;
+  color: var(--amber);
+  margin-top: 2px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btnAnswer,
+.btnIgnore {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+  transition: background var(--t-fast), opacity var(--t-fast);
+}
+
+.btnAnswer {
+  background: var(--teal-lo);
+  border: 0.5px solid var(--teal);
+  color: #4ecba0;
+}
+
+.btnAnswer:hover { background: rgba(26,140,106,0.22); }
+
+.btnIgnore {
+  background: var(--bg-3);
+  border: 0.5px solid var(--border-md);
+  color: var(--text-lo);
+}
+
+.btnIgnore:hover { background: var(--bg-4); color: var(--text-md); }

@@ -1,0 +1,357 @@
+[
+  {
+    "id": "margaret_01",
+    "callerId": "margaret_hoffstead",
+    "shift": 2,
+    "moodOnAnswer": "anxious",
+    "notebookSummary": "Margaret Hoffstead. Su gato Calcetines lleva tres horas repitiendo que 'el jueves siguiente no va a ocurrir'. No sabe qué jueves.",
+    "nodes": [
+      {
+        "id": "mg01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Buenas noches. Sé que es tarde, pero mi gato lleva tres horas diciéndome en voz alta que el jueves siguiente no va a ocurrir.",
+        "next": "mg01_n2"
+      },
+      {
+        "id": "mg01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Y yo le pregunto: ¿qué jueves? Y él dice: el único que importa. Y luego me mira como si yo fuera tonta.",
+        "next": "mg01_choice1"
+      },
+      {
+        "id": "mg01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "mg01_c_listen", "text": "¿Cuándo empezó Calcetines a hablar?",
+            "statEffect": { "empathy": 1, "curiosity": 2 },
+            "relEffect": { "margaret_hoffstead": 3 },
+            "flagSet": { "cat_speaks": true },
+            "next": "mg01_listen_branch"
+          },
+          {
+            "id": "mg01_c_transfer", "text": "Le paso a Criaturas Mágicas. Tienen un departamento específico para mascotas con capacidades lingüísticas.",
+            "statEffect": { "efficiency": 2 },
+            "relEffect": { "margaret_hoffstead": 0 },
+            "next": "mg01_transfer_end"
+          },
+          {
+            "id": "mg01_c_paranormal", "text": "Esto suena a Asuntos Paranormales más que a Criaturas Mágicas. ¿Quiere que le transfiera?",
+            "statEffect": { "efficiency": 1, "curiosity": 1 },
+            "next": "mg01_paranormal_end"
+          },
+          {
+            "id": "mg01_c_unknown", "text": "La transfiero al Departamento Desconocido.",
+            "condition": { "stat": "chaos", "gte": 20 },
+            "statEffect": { "chaos": 3 },
+            "next": "mg01_unknown_end"
+          }
+        ]
+      },
+      {
+        "id": "mg01_listen_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Desde el martes. Antes solo maullaba como cualquier gato. De hecho, yo pensé que se había confundido con el televisor la primera vez.",
+        "next": "mg01_listen2"
+      },
+      {
+        "id": "mg01_listen2", "type": "dialogue", "speaker": "caller",
+        "text": "Pero luego apagué el televisor y él siguió. Con una voz muy grave para un gato, por cierto. Muy seria.",
+        "next": "mg01_choice2"
+      },
+      {
+        "id": "mg01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "mg01_c_jueves", "text": "¿Ha intentado preguntarle al gato qué importa exactamente del jueves?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "margaret_hoffstead": 3 },
+            "flagSet": { "cat_mystery_active": true },
+            "next": "mg01_jueves_branch"
+          },
+          {
+            "id": "mg01_c_vet", "text": "Lo primero es descartar causas médicas. ¿Ha ido al veterinario?",
+            "statEffect": { "efficiency": 1 },
+            "next": "mg01_vet_end"
+          }
+        ]
+      },
+      {
+        "id": "mg01_jueves_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Sí, le pregunté. Me dijo: 'El jueves donde las líneas se cruzan.' Y luego cerró los ojos y no dijo nada más.",
+        "next": "mg01_jueves2"
+      },
+      {
+        "id": "mg01_jueves2", "type": "dialogue", "speaker": "system",
+        "text": "[Algo en su cuaderno ya está escrito antes de que usted lo anote. La frase 'donde las líneas se cruzan' aparece en la esquina de la página.]",
+        "next": "mg01_jueves_end"
+      },
+      {
+        "id": "mg01_jueves_end", "type": "end",
+        "text": "No entiendo nada de lo que dice ese gato. Pero me alegra haberle contado. ¿Puedo llamar mañana si vuelve a hablar? Buenas noches.",
+        "flagSet": { "margaret_can_call_back": true, "jueves_lineas_heard": true }
+      },
+      {
+        "id": "mg01_transfer_end", "type": "end",
+        "text": "¿Criaturas Mágicas? Pues bueno. Aunque Calcetines tiene ocho años y nunca había hecho nada mágico antes. Gracias. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg01_paranormal_end", "type": "end",
+        "text": "Paranormal... sí, quizás eso tiene más sentido. Gracias, buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg01_unknown_end", "type": "end",
+        "text": "¿El Departamento Desconocido? ¿Qué hace ese departamento? ...Calcetines está mirando el teléfono muy fijamente.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg01_vet_end", "type": "end",
+        "text": "El veterinario le dijo que estaba perfectamente sano. Que quizás necesitaba más estimulación intelectual. Buenas noches.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "margaret_02",
+    "callerId": "margaret_hoffstead",
+    "shift": 4,
+    "moodOnAnswer": "excited",
+    "notebookSummary": "Margaret: Calcetines habló de nuevo. Esta vez dijo el nombre del Switchboard. Textualmente.",
+    "nodes": [
+      {
+        "id": "mg02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Margaret, la del gato. Vuelvo a llamar porque Calcetines ha vuelto a hablar.",
+        "next": "mg02_n2"
+      },
+      {
+        "id": "mg02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Esta vez ha dicho tres cosas. La primera: 'El Switchboard no es lo que parece.' La segunda: 'El operador lleva más tiempo del que cree.'",
+        "next": "mg02_n3"
+      },
+      {
+        "id": "mg02_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Y la tercera... bueno, la tercera fue su nombre. El suyo. Y luego se durmió.",
+        "next": "mg02_choice1"
+      },
+      {
+        "id": "mg02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "mg02_c_name", "text": "¿Cómo sabe Calcetines mi nombre?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "margaret_hoffstead": 2 },
+            "flagSet": { "cat_knows_operator": true },
+            "next": "mg02_name_branch"
+          },
+          {
+            "id": "mg02_c_calm", "text": "Señora Hoffstead, no se preocupe. Los gatos con capacidades lingüísticas a veces dicen cosas sin contexto.",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "margaret_hoffstead": -1 },
+            "next": "mg02_calm_end"
+          },
+          {
+            "id": "mg02_c_switchboard", "text": "¿Dijo 'el Switchboard'? ¿Usó exactamente esa palabra?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "margaret_hoffstead": 3 },
+            "flagSet": { "cat_named_switchboard": true },
+            "next": "mg02_switchboard_branch"
+          }
+        ]
+      },
+      {
+        "id": "mg02_name_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Yo me lo pregunté también. Nunca le he dicho su nombre. Solo llamo al número de teléfono y hablo con quien contesta.",
+        "next": "mg02_name2"
+      },
+      {
+        "id": "mg02_name2", "type": "dialogue", "speaker": "caller",
+        "text": "Calcetines también me dijo una cosa más, pero no sé si contársela. ¿Quiere que se la cuente?",
+        "next": "mg02_choice2"
+      },
+      {
+        "id": "mg02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "mg02_c_yes", "text": "Sí. Cuéntemela.",
+            "statEffect": { "curiosity": 2 },
+            "flagSet": { "cat_full_message": true },
+            "next": "mg02_yes_branch"
+          },
+          {
+            "id": "mg02_c_no", "text": "Quizá es mejor que no. Hay cosas que es mejor no saber.",
+            "statEffect": { "efficiency": 1 },
+            "next": "mg02_no_end"
+          }
+        ]
+      },
+      {
+        "id": "mg02_yes_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Dijo: 'Dile al operador que mire el archivador. El cajón de abajo. Que no espere al jueves.'",
+        "next": "mg02_yes_end"
+      },
+      {
+        "id": "mg02_yes_end", "type": "end",
+        "text": "No sé qué significa. Pero Calcetines nunca miente. Él no tiene motivos para mentir. Buenas noches.",
+        "flagSet": { "archiver_clue_given": true, "cat_full_message": true }
+      },
+      {
+        "id": "mg02_no_end", "type": "end",
+        "text": "Sí, quizás tiene razón. A veces es mejor así. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg02_calm_end", "type": "end",
+        "text": "Sin contexto... sí, puede ser. Aunque conocer su nombre parece bastante contextual. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg02_switchboard_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Sí, exactamente esa. 'El Switchboard no es lo que parece.' Lo pronunció perfectamente. Luego volvió a ser un gato normal.",
+        "next": "mg02_switchboard2"
+      },
+      {
+        "id": "mg02_switchboard2", "type": "dialogue", "speaker": "caller",
+        "text": "¿El Switchboard es donde trabaja usted, verdad? ¿Es así como se llama esa oficina?",
+        "next": "mg02_name_branch"
+      }
+    ]
+  },
+  {
+    "id": "margaret_03",
+    "callerId": "margaret_hoffstead",
+    "shift": 6,
+    "moodOnAnswer": "worried",
+    "notebookSummary": "Margaret llama porque Calcetines lleva 24h sin hablar ni comer. Solo mira el archivador de la oficina del Switchboard, dice.",
+    "nodes": [
+      {
+        "id": "mg03_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Margaret. Calcetines lleva un día entero sin comer y sin hablar. Solo mira en una dirección.",
+        "next": "mg03_n2"
+      },
+      {
+        "id": "mg03_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Le pregunté adónde miraba. Tardó mucho en contestar. Luego dijo: 'El cajón. Ya lo han visto. Ya es tarde para parar.'",
+        "next": "mg03_choice1"
+      },
+      {
+        "id": "mg03_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "mg03_c_open", "text": "[Ha revisado el archivador. ¿Qué hay en el cajón de abajo?]",
+            "statEffect": { "curiosity": 3 },
+            "condition": { "flagSet": "archiver_clue_given" },
+            "flagSet": { "found_operator_files": true },
+            "next": "mg03_open_branch"
+          },
+          {
+            "id": "mg03_c_not_open", "text": "No he abierto ningún cajón. ¿De qué cajón habla Calcetines?",
+            "statEffect": { "curiosity": 1 },
+            "next": "mg03_not_open_end"
+          },
+          {
+            "id": "mg03_c_comfort", "text": "¿Cómo está usted, señora Hoffstead? Esto debe ser agotador.",
+            "statEffect": { "empathy": 3 },
+            "relEffect": { "margaret_hoffstead": 4 },
+            "next": "mg03_comfort_branch"
+          }
+        ]
+      },
+      {
+        "id": "mg03_open_branch", "type": "dialogue", "speaker": "system",
+        "text": "[El archivador. Carpeta: OPERADORES ANTERIORES — NO ABRIR. Siete fichas. Fotos. Todos sentados en este mismo escritorio.]",
+        "next": "mg03_open2"
+      },
+      {
+        "id": "mg03_open2", "type": "dialogue", "speaker": "caller",
+        "text": "¿Está ahí? ¿Está mirando el cajón? Calcetines se acaba de levantar y está ronroneando. Creo que eso es bueno.",
+        "next": "mg03_open_end"
+      },
+      {
+        "id": "mg03_open_end", "type": "end",
+        "text": "Bien. Calcetines dice que ya sabe lo que tiene que saber. Que ahora depende de usted. Buenas noches.",
+        "flagSet": { "found_operator_files": true, "cat_spoke_to_operator": true }
+      },
+      {
+        "id": "mg03_not_open_end", "type": "end",
+        "text": "Calcetines dice que lo encontrará cuando sea el momento. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg03_comfort_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Pues la verdad es que sí. Tengo setenta y dos años y nunca pensé que acabaría teniendo conversaciones proféticas con un gato.",
+        "next": "mg03_comfort2"
+      },
+      {
+        "id": "mg03_comfort2", "type": "dialogue", "speaker": "caller",
+        "text": "Aunque, pensándolo bien, tampoco pensé que acabaría llamando a una centralita a las tres de la madrugada. La vida sorprende.",
+        "next": "mg03_comfort_end"
+      },
+      {
+        "id": "mg03_comfort_end", "type": "end",
+        "text": "Gracias por escucharme. Calcetines me acaba de mirar y ha dicho 'buen operador'. Así que supongo que hace bien su trabajo. Buenas noches.",
+        "flagSet": { "margaret_deeply_bonded": true }
+      }
+    ]
+  },
+  {
+    "id": "margaret_04",
+    "callerId": "margaret_hoffstead",
+    "shift": 10,
+    "moodOnAnswer": "calm_urgent",
+    "unlockCondition": { "flagSet": "cat_spoke_to_operator" },
+    "notebookSummary": "Margaret: Calcetines habla de nuevo. Tiene un mensaje específico. 'El operador tiene que elegir antes del turno treinta.'",
+    "nodes": [
+      {
+        "id": "mg04_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Margaret. Calcetines tiene un mensaje para usted. Lo ha estado preparando tres días.",
+        "next": "mg04_n2"
+      },
+      {
+        "id": "mg04_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Dice: 'El operador tiene que elegir antes del turno treinta. No el qué. El porqué.'",
+        "next": "mg04_n3"
+      },
+      {
+        "id": "mg04_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Y también dice que nosotros le ayudaremos. Los que le han conocido. Si él quiere que le ayudemos.",
+        "next": "mg04_choice1"
+      },
+      {
+        "id": "mg04_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "mg04_c_yes_help", "text": "Sí. Quiero ayuda.",
+            "statEffect": { "empathy": 3 },
+            "relEffect": { "margaret_hoffstead": 5 },
+            "flagSet": { "accepted_callers_help": true, "callers_helped_count_increment": 1 },
+            "next": "mg04_yes_end"
+          },
+          {
+            "id": "mg04_c_no_help", "text": "No entiendo de qué habla. Estoy bien.",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "margaret_hoffstead": 0 },
+            "next": "mg04_no_end"
+          },
+          {
+            "id": "mg04_c_ask", "text": "¿Qué tengo que elegir exactamente?",
+            "statEffect": { "curiosity": 2 },
+            "next": "mg04_ask_branch"
+          }
+        ]
+      },
+      {
+        "id": "mg04_yes_end", "type": "end",
+        "text": "Bien. Calcetines lo sabía. Está ronroneando. Buenas noches. Cuídese.",
+        "flagSet": { "accepted_callers_help": true }
+      },
+      {
+        "id": "mg04_no_end", "type": "end",
+        "text": "Claro. Buenas noches. Calcetines dice que lo entenderá cuando llegue el momento.",
+        "flagSet": {}
+      },
+      {
+        "id": "mg04_ask_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Calcetines dice: 'Si eso es lo que pregunta, ya tiene la respuesta.' Luego se fue a su caja de arena.",
+        "next": "mg04_yes_end"
+      }
+    ]
+  }
+]

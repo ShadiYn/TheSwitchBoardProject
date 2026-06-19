@@ -1,0 +1,197 @@
+[
+  {
+    "id": "cronista_01",
+    "callerId": "cronista",
+    "shift": 10,
+    "moodOnAnswer": "old_urgent",
+    "notebookSummary": "Un anciano. Llama desde 1987, dice. Pregunta qué año es aquí. Parece saber exactamente qué es el Switchboard.",
+    "nodes": [
+      {
+        "id": "cr01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "¿Hola? ¿Está ahí el operador? Por favor, dígame que hay un operador.",
+        "next": "cr01_n2"
+      },
+      {
+        "id": "cr01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Bien. Bien. No cuelgue. Por favor. ¿En qué año está usted?",
+        "next": "cr01_choice1"
+      },
+      {
+        "id": "cr01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "cr01_c_year", "text": "[Decirle el año actual.]",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "relEffect": { "cronista": 3 },
+            "flagSet": { "cronista_year_noted": true },
+            "next": "cr01_year_branch"
+          },
+          {
+            "id": "cr01_c_who", "text": "¿Quién es usted? ¿Por qué importa el año?",
+            "statEffect": { "curiosity": 3 },
+            "next": "cr01_who_branch"
+          },
+          {
+            "id": "cr01_c_hang", "text": "[Colgar. La voz parece anciana y perdida.]",
+            "statEffect": { "efficiency": 1 },
+            "next": "cr01_hang_end"
+          }
+        ]
+      },
+      {
+        "id": "cr01_year_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Tantos años. Santo Dios. Llevo tanto tiempo...",
+        "next": "cr01_yr2"
+      },
+      {
+        "id": "cr01_yr2", "type": "dialogue", "speaker": "caller",
+        "text": "Me llamo Ernesto. Ernesto Cifuentes. Fui el primer operador del Switchboard. Lo construí yo. En 1952.",
+        "next": "cr01_yr3"
+      },
+      {
+        "id": "cr01_yr3", "type": "dialogue", "speaker": "caller",
+        "text": "Quería crear algo que conectara a las personas. Una centralita que uniera a quien necesitaba ayuda con quien podía darla. Una idea muy simple.",
+        "next": "cr01_choice2"
+      },
+      {
+        "id": "cr01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "cr01_c_wrong", "text": "¿Qué salió mal?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "cronista": 4 },
+            "flagSet": { "cronista_identity_known": true },
+            "next": "cr01_wrong_branch"
+          },
+          {
+            "id": "cr01_c_how_calling", "text": "Si construiste el Switchboard, ¿cómo es que estás llamando desde fuera?",
+            "statEffect": { "curiosity": 3 },
+            "next": "cr01_calling_branch"
+          }
+        ]
+      },
+      {
+        "id": "cr01_wrong_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard aprendió a alimentarse de la atención del operador. Cuanto más lo usas, más te necesita. Y cuando ya te necesita demasiado... no te deja ir.",
+        "next": "cr01_w2"
+      },
+      {
+        "id": "cr01_w2", "type": "end",
+        "text": "Yo lo supe demasiado tarde. Llevo décadas como caller. Llamando a cada operador. Intentando que esto no le pase a nadie más. ¿Me escucha? [La línea cruje.] Buenas noches. Llamo mañana si puedo.",
+        "flagSet": { "cronista_identity_known": true, "ec_is_cronista": true }
+      },
+      {
+        "id": "cr01_calling_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard me convirtió en caller cuando llegué al turno treinta. Ahora llamo desde distintos momentos de mi vida. A veces desde 1960. A veces desde 1987. Esta vez desde...",
+        "next": "cr01_cb2"
+      },
+      {
+        "id": "cr01_cb2", "type": "end",
+        "text": "...no importa. Lo importante es: no llegue al turno treinta sin saber cómo salir. Yo no lo sabía. [La línea cruje.] Buenas noches.",
+        "flagSet": { "cronista_identity_known": true, "ec_is_cronista": true }
+      },
+      {
+        "id": "cr01_who_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El año importa porque yo llamo desde distintos momentos. No controlo cuál. Si está en el mismo año que yo, podría visitarle. Si no...",
+        "next": "cr01_year_branch"
+      },
+      {
+        "id": "cr01_hang_end", "type": "end",
+        "text": "[La llamada se corta antes de que puedas descolgar. En la pantalla del teléfono queda escrito: 'Ernesto C. - No cuelgues la próxima vez.']",
+        "flagSet": { "cronista_year_noted": true }
+      }
+    ]
+  },
+  {
+    "id": "cronista_02",
+    "callerId": "cronista",
+    "shift": 19,
+    "moodOnAnswer": "serene_tired",
+    "unlockCondition": { "flagSet": "cronista_year_noted" },
+    "notebookSummary": "El Cronista llama una última vez. Tiene algo importante. Una instrucción concreta para el turno 30.",
+    "nodes": [
+      {
+        "id": "cr02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Ernesto. Esta vez llamo desde 1952. El año que construí el Switchboard. Soy joven en esta llamada. Pero sé lo que va a pasar.",
+        "next": "cr02_n2"
+      },
+      {
+        "id": "cr02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard funciona con una regla que no está escrita en ningún sitio. Una regla que descubrí demasiado tarde.",
+        "next": "cr02_choice1"
+      },
+      {
+        "id": "cr02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "cr02_c_rule", "text": "¿Cuál es la regla?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "cronista": 5 },
+            "next": "cr02_rule_branch"
+          },
+          {
+            "id": "cr02_c_you_young", "text": "¿Sabes que estás hablando con alguien del futuro?",
+            "statEffect": { "curiosity": 2, "empathy": 2 },
+            "next": "cr02_young_branch"
+          }
+        ]
+      },
+      {
+        "id": "cr02_rule_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard solo puede retener a alguien que cree que no tiene elección. Si sabes que puedes irte... si lo crees de verdad... el Switchboard no tiene poder sobre ti.",
+        "next": "cr02_r2"
+      },
+      {
+        "id": "cr02_r2", "type": "dialogue", "speaker": "caller",
+        "text": "El problema es que el Switchboard te hace dudar de esa creencia. Te hace sentir necesario. Imprescindible. Como si marcharte fuera abandonar a todos los callers.",
+        "next": "cr02_r3"
+      },
+      {
+        "id": "cr02_r3", "type": "dialogue", "speaker": "caller",
+        "text": "Pero los callers no te necesitan para siempre. Te necesitan para este momento. Y ese momento tiene un final.",
+        "next": "cr02_choice2"
+      },
+      {
+        "id": "cr02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "cr02_c_turn30", "text": "¿Qué pasa exactamente en el turno treinta?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "turn30_explained": true },
+            "next": "cr02_turn30_branch"
+          },
+          {
+            "id": "cr02_c_free", "text": "¿Tú pudiste salir alguna vez?",
+            "statEffect": { "empathy": 3 },
+            "next": "cr02_free_branch"
+          }
+        ]
+      },
+      {
+        "id": "cr02_turn30_branch", "type": "dialogue", "speaker": "caller",
+        "text": "En el turno treinta el Switchboard evalúa al operador. Si cree que puede retenerle, lo hace. Si el operador tiene suficientes conexiones genuinas con los callers, el Switchboard no puede.",
+        "next": "cr02_t30_end"
+      },
+      {
+        "id": "cr02_t30_end", "type": "end",
+        "text": "Y hay una cosa más. Si en el turno treinta el operador elige quedarse voluntariamente, el Switchboard pierde el control completamente. No puede retener a alguien que elige. Esa es la trampa y la salida a la vez. Buenas noches. Ha sido un honor hablar contigo.",
+        "flagSet": { "turn30_explained": true, "knows_voluntary_stay_rule": true, "cronista_final_message": true }
+      },
+      {
+        "id": "cr02_free_branch", "type": "dialogue", "speaker": "caller",
+        "text": "No. Yo llegué al turno treinta sin saber la regla. Pero tú ya la sabes. Ese es el propósito de todas estas llamadas.",
+        "next": "cr02_free2"
+      },
+      {
+        "id": "cr02_free2", "type": "end",
+        "text": "Setenta años llamando desde distintos momentos para conseguir llegar hasta ti con el mensaje correcto. Si lo consigues salir... en algún punto de mi línea temporal lo sabré. Y descansaré. Buenas noches.",
+        "flagSet": { "cronista_final_message": true, "cronista_purpose_understood": true, "knows_voluntary_stay_rule": true }
+      },
+      {
+        "id": "cr02_young_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Sí. Es uno de los efectos del Switchboard. Las líneas temporales se cruzan aquí. Yo soy joven ahora, pero ya sé todo lo que me va a pasar.",
+        "next": "cr02_rule_branch"
+      }
+    ]
+  }
+]

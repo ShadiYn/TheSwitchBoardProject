@@ -1,0 +1,107 @@
+[
+  {
+    "id": "ramona_01",
+    "callerId": "ramona_flash",
+    "shift": 5,
+    "moodOnAnswer": "energetic",
+    "notebookSummary": "Ramona Flash. Rockera. Muy animada. Nadie la escucha en los ensayos. Habla en argot de los 80. Algo no cuadra.",
+    "nodes": [
+      { "id": "r01_n1", "type": "dialogue", "speaker": "caller", "text": "¡Ey! ¿Diga? ¿Es el Switchboard? Tronco, llevo media hora intentando llamar a alguien que me escuche.", "next": "r01_n2" },
+      { "id": "r01_n2", "type": "dialogue", "speaker": "caller", "text": "Me llamo Ramona. Soy guitarrista en Los Rayos Equivocados, ¿los conoces? Buenísimos. El mejor rock de Madrid, sin duda.", "next": "r01_choice1" },
+      {
+        "id": "r01_choice1", "type": "choice",
+        "choices": [
+          { "id": "r01_c_ask_band", "text": "No los conozco. ¿Cuál es el problema, Ramona?", "statEffect": { "empathy": 1 }, "next": "r01_band_branch" },
+          { "id": "r01_c_curious_80", "text": "¿De Madrid? ¿De qué época son?", "statEffect": { "curiosity": 2 }, "relEffect": { "ramona_flash": 1 }, "next": "r01_epoca_branch" }
+        ]
+      },
+      { "id": "r01_band_branch", "type": "dialogue", "speaker": "caller", "text": "El problema es que en el ensayo de hoy nadie me veía. El batería pasó por delante de mí sin disculparse. ¡Ni siquiera me miró!", "next": "r01_b2" },
+      { "id": "r01_b2", "type": "dialogue", "speaker": "caller", "text": "Tuve que gritar tres veces para que el técnico de sonido me hiciera caso. ¿Es que me he vuelto invisible o qué?", "next": "r01_choice2" },
+      {
+        "id": "r01_choice2", "type": "choice",
+        "choices": [
+          { "id": "r01_c_paranormal_subtle", "text": "Ramona... ¿cuándo fue la última vez que comiste o dormiste?", "statEffect": { "empathy": 2, "curiosity": 2 }, "next": "r01_subtle_branch" },
+          { "id": "r01_c_hr_band", "text": "Problemas entre compañeros de trabajo es competencia de Relaciones Humanas.", "statEffect": { "efficiency": 2 }, "next": "r01_hr_end" }
+        ]
+      },
+      { "id": "r01_subtle_branch", "type": "dialogue", "speaker": "caller", "text": "¿Comer? Pues... [pausa] No recuerdo la última vez que comí. Qué raro. Y dormir tampoco.", "next": "r01_s2" },
+      { "id": "r01_s2", "type": "dialogue", "speaker": "caller", "text": "Llevo así un tiempo. No sé exactamente cuánto. Desde la noche del concierto en la sala Caracol.", "next": "r01_choice3" },
+      {
+        "id": "r01_choice3", "type": "choice",
+        "choices": [
+          { "id": "r01_c_when", "text": "¿En qué año fue ese concierto, Ramona?", "statEffect": { "curiosity": 3 }, "relEffect": { "ramona_flash": 2 }, "next": "r01_when_branch" },
+          { "id": "r01_c_careful", "text": "Ramona, creo que algo ha pasado. ¿Tienes a alguien de confianza cerca?", "statEffect": { "empathy": 3 }, "next": "r01_careful_end" }
+        ]
+      },
+      { "id": "r01_when_branch", "type": "dialogue", "speaker": "caller", "text": "¿Qué año? Pues... 1987. Octubre del 87. ¿Por qué lo preguntas?", "next": "r01_when2" },
+      { "id": "r01_when2", "type": "end", "text": "Anda, qué tarde es. Oye, llamo mañana si siguen ignorándome. ¡Hasta luego, tronco!", "flagSet": { "ramona_year_noted": true } },
+      { "id": "r01_hr_end", "type": "end", "text": "Relaciones Humanas... sí, supongo. Aunque no creo que entiendan lo de la música. Hasta luego.", "flagSet": {} },
+      { "id": "r01_careful_end", "type": "end", "text": "¿De confianza? Los de la banda, supongo. Aunque hoy ninguno me ha hecho caso. Qué raros están todos. Hasta luego.", "flagSet": { "ramona_year_noted": true } },
+      { "id": "r01_epoca_branch", "type": "dialogue", "speaker": "caller", "text": "¡Somos de ahora! Llevamos desde el 85 tocando. El mejor rock de Madrid, te lo digo yo.", "next": "r01_band_branch" }
+    ]
+  },
+  {
+    "id": "ramona_02",
+    "callerId": "ramona_flash",
+    "shift": 9,
+    "moodOnAnswer": "confused_scared",
+    "notebookSummary": "Ramona empieza a sospechar. Encontró una fecha en un periódico. No era 1987.",
+    "nodes": [
+      { "id": "r02_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Ramona. Oye, te llamo porque ha pasado algo raro.", "next": "r02_n2" },
+      { "id": "r02_n2", "type": "dialogue", "speaker": "caller", "text": "Encontré un periódico en la sala de ensayo. La fecha era... no era 1987.", "next": "r02_choice1" },
+      {
+        "id": "r02_choice1", "type": "choice",
+        "choices": [
+          { "id": "r02_c_tell", "text": "¿Qué fecha ponía, Ramona?", "statEffect": { "empathy": 2, "curiosity": 1 }, "relEffect": { "ramona_flash": 3 }, "next": "r02_tell_branch" },
+          { "id": "r02_c_gentle", "text": "Ramona... creo que llevas mucho tiempo sin saber lo que pasó esa noche de 1987.", "statEffect": { "empathy": 4 }, "relEffect": { "ramona_flash": 4 }, "next": "r02_gentle_branch" }
+        ]
+      },
+      { "id": "r02_tell_branch", "type": "dialogue", "speaker": "caller", "text": "[voz temblorosa] Una fecha de hace muchos años. Muchos. Más de treinta.", "next": "r02_t2" },
+      { "id": "r02_t2", "type": "dialogue", "speaker": "caller", "text": "¿Cómo puede ser eso posible? Yo estaba en el concierto, tocando, y de repente... y de repente no recuerdo nada hasta que empecé a llamar a la gente y nadie me contestaba.", "next": "r02_t3" },
+      { "id": "r02_t3", "type": "dialogue", "speaker": "caller", "text": "¿Qué me pasó?", "next": "r02_choice2" },
+      {
+        "id": "r02_choice2", "type": "choice",
+        "choices": [
+          { "id": "r02_c_truth", "text": "Ramona, hubo un accidente esa noche. En la sala Caracol.", "statEffect": { "empathy": 3 }, "relEffect": { "ramona_flash": 5 }, "flagSet": { "ramona_knows_shes_dead": true }, "next": "r02_truth_end" },
+          { "id": "r02_c_not_sure", "text": "No lo sé con certeza. Pero creo que llevas mucho tiempo atrapada.", "statEffect": { "empathy": 2 }, "next": "r02_gentle_branch" }
+        ]
+      },
+      { "id": "r02_truth_end", "type": "end", "text": "[silencio largo] ...Oh. [pausa] ¿Mi banda lo sabe? ¿Saben que... que todavía estoy aquí? [la voz se rompe] Llamo mañana. Necesito... necesito pensar. Gracias por decírmelo.", "flagSet": { "ramona_knows_shes_dead": true } },
+      { "id": "r02_gentle_branch", "type": "dialogue", "speaker": "caller", "text": "Atrapada. Sí. Eso encaja. [pausa] ¿Puedo seguir llamando? No quiero estar sola con esto.", "next": "r02_gentle_end" },
+      { "id": "r02_gentle_end", "type": "end", "text": "Gracias. Oye... ¿sabes si mi banda está bien? ¿Si siguieron tocando? Solo quiero saber eso.", "flagSet": { "ramona_knows_shes_dead": true } }
+    ]
+  },
+  {
+    "id": "ramona_03",
+    "callerId": "ramona_flash",
+    "shift": 13,
+    "moodOnAnswer": "sad_resolved",
+    "unlockCondition": { "flagSet": "ramona_knows_shes_dead" },
+    "notebookSummary": "Ramona llama por última vez. Ha decidido seguir adelante. Pero primero necesita que alguien la escuche tocar una última vez.",
+    "nodes": [
+      { "id": "r03_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Ramona. Creo que esta es la última vez que llamo.", "next": "r03_n2" },
+      { "id": "r03_n2", "type": "dialogue", "speaker": "caller", "text": "He estado pensando mucho. Y creo que es hora de seguir. Dondequiera que sea eso.", "next": "r03_choice1" },
+      {
+        "id": "r03_choice1", "type": "choice",
+        "choices": [
+          { "id": "r03_c_ready", "text": "¿Estás lista?", "statEffect": { "empathy": 2 }, "relEffect": { "ramona_flash": 3 }, "next": "r03_ready_branch" },
+          { "id": "r03_c_guitar", "text": "¿Tocas la guitarra ahora mismo?", "statEffect": { "empathy": 3, "curiosity": 1 }, "relEffect": { "ramona_flash": 5 }, "next": "r03_guitar_branch" }
+        ]
+      },
+      { "id": "r03_guitar_branch", "type": "dialogue", "speaker": "caller", "text": "Sí. [silencio breve] ¿Quieres escuchar? Nadie me ha escuchado tocar en treinta años.", "next": "r03_g2" },
+      { "id": "r03_g2", "type": "dialogue", "speaker": "system", "text": "[A través del teléfono, una guitarra eléctrica. Algo entre el rock y la melancolía. Dura unos segundos. Es perfecta.]", "next": "r03_g3" },
+      { "id": "r03_g3", "type": "dialogue", "speaker": "caller", "text": "[pausa] ...Gracias. Hacía falta. Oye, cuídate tú también. Lo que pasa en ese sitio donde trabajas... no es normal.", "next": "r03_choice2" },
+      {
+        "id": "r03_choice2", "type": "choice",
+        "choices": [
+          { "id": "r03_c_ask_switchboard", "text": "¿Sabes algo del Switchboard?", "statEffect": { "curiosity": 2 }, "next": "r03_sw_branch" },
+          { "id": "r03_c_goodbye", "text": "Cuídate tú también, Ramona. Fue un placer.", "statEffect": { "empathy": 3 }, "flagSet": { "ramona_helped": true, "callers_helped_count_increment": 1 }, "next": "r03_goodbye_end" }
+        ]
+      },
+      { "id": "r03_sw_branch", "type": "dialogue", "speaker": "caller", "text": "Los fantasmas sabemos cosas. El Switchboard lleva atrapando gente desde antes de que yo naciera. Pero también sé que hay quien consigue salir.", "next": "r03_sw2" },
+      { "id": "r03_sw2", "type": "end", "text": "Los que salen son los que no van solos. Eso es todo. Adiós, operador. [La señal se va. Diferente a como siempre se va. Más definitiva. Más libre.]", "flagSet": { "ramona_helped": true, "not_alone_confirmed": true, "callers_helped_count_increment": 1 } },
+      { "id": "r03_goodbye_end", "type": "end", "text": "[La línea se corta. Queda en el aire un acorde de guitarra que tardó varios segundos en desvanecerse.]", "flagSet": { "ramona_helped": true } },
+      { "id": "r03_ready_branch", "type": "dialogue", "speaker": "caller", "text": "Lista como puedo estar. Aunque me hubiera gustado escucharme tocar una última vez con alguien escuchando de verdad.", "next": "r03_guitar_branch" }
+    ]
+  }
+]

@@ -1,0 +1,176 @@
+[
+  {
+    "id": "self_01",
+    "callerId": "self_caller",
+    "shift": 17,
+    "moodOnAnswer": "impossible",
+    "notebookSummary": "TUrno 17. El identificador decía mi nombre. Era mi voz. Me decía que tenía trece turnos antes de que el Switchboard decida que ya no soy necesario.",
+    "nodes": [
+      {
+        "id": "self_n1", "type": "dialogue", "speaker": "system",
+        "text": "[El teléfono suena. El identificador de llamada dice: tu nombre. Tu número de empleado. Turno de noche.]",
+        "next": "self_n2"
+      },
+      {
+        "id": "self_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Escucha. No cuelgues.",
+        "next": "self_n3"
+      },
+      {
+        "id": "self_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Sé que suena imposible. Yo también lo pensé.",
+        "next": "self_choice1"
+      },
+      {
+        "id": "self_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "self_c_hang", "text": "[Colgar.]",
+            "statEffect": { "efficiency": 1 },
+            "next": "self_hang_end"
+          },
+          {
+            "id": "self_c_listen", "text": "Estoy escuchando.",
+            "statEffect": { "curiosity": 3, "empathy": 1 },
+            "flagSet": { "self_call_answered": true },
+            "next": "self_listen_branch"
+          },
+          {
+            "id": "self_c_how", "text": "¿Cómo es posible que seas yo?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "self_call_answered": true },
+            "next": "self_how_branch"
+          }
+        ]
+      },
+      {
+        "id": "self_hang_end", "type": "end",
+        "text": "[La línea se corta. El teléfono suena de nuevo inmediatamente. Una vez. Dos veces. Tres. Se para. En el cuaderno aparece escrito con tu letra: 'No colgué a tiempo.']",
+        "flagSet": { "self_call_rejected": true }
+      },
+      {
+        "id": "self_listen_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Bien. Lo que te voy a decir lo vas a querer ignorar. No lo hagas.",
+        "next": "self_l2"
+      },
+      {
+        "id": "self_l2", "type": "dialogue", "speaker": "caller",
+        "text": "Tienes exactamente trece turnos antes de que el Switchboard decida que ya no te necesita. Después de eso te conviertes en caller.",
+        "next": "self_l3"
+      },
+      {
+        "id": "self_l3", "type": "dialogue", "speaker": "caller",
+        "text": "Permanente. En bucle. Llamando a un operador que no sabe quién eres, contando lo mismo cada vez.",
+        "next": "self_l4"
+      },
+      {
+        "id": "self_l4", "type": "dialogue", "speaker": "caller",
+        "text": "Yo llevo... no sé cuánto tiempo. Las llamadas se repiten. El Switchboard borra la memoria entre intentos.",
+        "next": "self_choice2"
+      },
+      {
+        "id": "self_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "self_c_exit", "text": "¿Cómo salgo?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "asked_exit": true },
+            "next": "self_exit_branch"
+          },
+          {
+            "id": "self_c_how_many", "text": "¿Cuántas veces has llamado ya?",
+            "statEffect": { "curiosity": 2, "empathy": 2 },
+            "next": "self_how_many_branch"
+          },
+          {
+            "id": "self_c_believe", "text": "¿Por qué debería creerme a mí mismo?",
+            "statEffect": { "chaos": 1, "curiosity": 1 },
+            "next": "self_believe_branch"
+          }
+        ]
+      },
+      {
+        "id": "self_exit_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Hay dos formas. Una: dejar de transferir llamadas al Departamento Desconocido. Completamente. Eso le quita energía al Switchboard.",
+        "next": "self_exit2"
+      },
+      {
+        "id": "self_exit2", "type": "dialogue", "speaker": "caller",
+        "text": "Dos: conseguir que suficientes callers te ayuden voluntariamente. El Switchboard funciona con el aislamiento del operador. Si rompes el aislamiento...",
+        "next": "self_exit3"
+      },
+      {
+        "id": "self_exit3", "type": "dialogue", "speaker": "caller",
+        "text": "Pero hay una tercera opción. Una que no voy a decirte porque la última vez que la intenté... la línea se cortó.",
+        "next": "self_choice3"
+      },
+      {
+        "id": "self_choice3", "type": "choice",
+        "choices": [
+          {
+            "id": "self_c_third", "text": "¿Qué es la tercera opción?",
+            "statEffect": { "chaos": 2, "curiosity": 3 },
+            "flagSet": { "knows_third_option_exists": true },
+            "next": "self_third_end"
+          },
+          {
+            "id": "self_c_understood", "text": "Entendido. Lo intentaré.",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "flagSet": { "self_call_fully_heard": true },
+            "next": "self_full_end"
+          }
+        ]
+      },
+      {
+        "id": "self_third_end", "type": "end",
+        "text": "Es... [La línea se corta. En el silencio antes de la señal de ocupado, casi puedes escuchar: 'el Departamento Desconocido desde dentro.']",
+        "flagSet": { "knows_third_option_exists": true, "self_call_fully_heard": true }
+      },
+      {
+        "id": "self_full_end", "type": "end",
+        "text": "Bien. Recuerda esto: el Switchboard no puede atrapar a alguien que ya eligió quedarse voluntariamente. Eso cambia las reglas. [Línea cortada.]",
+        "flagSet": { "self_call_fully_heard": true, "knows_voluntary_stay_rule": true }
+      },
+      {
+        "id": "self_how_many_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Esta es la... no lo recuerdo con exactitud. El Switchboard borra la memoria entre intentos. Sé que he llamado muchas veces porque cada vez que llego aquí sé lo que tengo que decir.",
+        "next": "self_how_many2"
+      },
+      {
+        "id": "self_how_many2", "type": "dialogue", "speaker": "caller",
+        "text": "Como si lo hubiera ensayado. Pero no lo he ensayado. Lo he vivido.",
+        "next": "self_exit_branch"
+      },
+      {
+        "id": "self_believe_branch", "type": "dialogue", "speaker": "caller",
+        "text": "No tienes que creerme. Pero dime una cosa: ¿has encontrado los archivos del archivador?",
+        "next": "self_believe2"
+      },
+      {
+        "id": "self_believe2", "type": "dialogue", "speaker": "caller",
+        "text": "¿Sabes cuántos operadores han trabajado aquí antes que tú? ¿Sabes qué les pasó a todos?",
+        "next": "self_believe3"
+      },
+      {
+        "id": "self_believe3", "type": "dialogue", "speaker": "caller",
+        "text": "Yo te lo digo: se convirtieron en callers. Personas que llaman a una centralita de noche con problemas extraños. Atrapados en un rol.",
+        "next": "self_exit_branch"
+      },
+      {
+        "id": "self_how_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard es un nodo de convergencia temporal. Conecta versiones de personas en distintas líneas temporales.",
+        "next": "self_how2"
+      },
+      {
+        "id": "self_how2", "type": "dialogue", "speaker": "caller",
+        "text": "Cuando un operador lleva suficiente tiempo aquí, puede llamar hacia atrás en su propia línea. Hacia versiones anteriores de sí mismo.",
+        "next": "self_how3"
+      },
+      {
+        "id": "self_how3", "type": "dialogue", "speaker": "caller",
+        "text": "Llevo intentándolo desde que me convertí en caller. Esta es la primera vez que he conseguido que alguien no cuelgue.",
+        "next": "self_listen_branch"
+      }
+    ]
+  }
+]

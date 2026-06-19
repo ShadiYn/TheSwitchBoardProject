@@ -1,0 +1,333 @@
+[
+  {
+    "id": "zipi_01",
+    "callerId": "zipi",
+    "shift": 1,
+    "moodOnAnswer": "formal",
+    "notebookSummary": "Zyx-7, alias Zipi. Alien. Lleva 8 meses en el barrio. Pregunta por qué los humanos dicen 'buenas noches' cuando la noche no siempre es buena.",
+    "nodes": [
+      {
+        "id": "z01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Buenas noches. O eso creo que debo decir. Aunque no entiendo por qué la noche tiene que ser buena por defecto.",
+        "next": "z01_n2"
+      },
+      {
+        "id": "z01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Mi nombre es Zyx-7, pero los humanos me llaman Zipi. Llevo ocho meses en este planeta y tengo una consulta de carácter social.",
+        "next": "z01_choice1"
+      },
+      {
+        "id": "z01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "z01_c_ask", "text": "Adelante, Zipi. ¿En qué puedo ayudarle?",
+            "statEffect": { "empathy": 1 },
+            "relEffect": { "zipi": 2 },
+            "next": "z01_ask_branch"
+          },
+          {
+            "id": "z01_c_explain_night", "text": "Es una expresión de cortesía. No es una afirmación sobre la calidad objetiva de la noche.",
+            "statEffect": { "efficiency": 1, "curiosity": 1 },
+            "relEffect": { "zipi": 1 },
+            "next": "z01_explain_branch"
+          }
+        ]
+      },
+      {
+        "id": "z01_ask_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Esta semana he descubierto el concepto de la tortilla de patatas. Hay una división muy intensa entre los que la hacen con cebolla y los que no.",
+        "next": "z01_ask2"
+      },
+      {
+        "id": "z01_ask2", "type": "dialogue", "speaker": "caller",
+        "text": "He revisado 847 opiniones en internet. No hay consenso. ¿Es esto una guerra? ¿Debo elegir un bando?",
+        "next": "z01_choice2"
+      },
+      {
+        "id": "z01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "z01_c_cebolla", "text": "Con cebolla es la única opción correcta.",
+            "statEffect": { "chaos": 1 },
+            "relEffect": { "zipi": 2 },
+            "next": "z01_cebolla_end"
+          },
+          {
+            "id": "z01_c_neutral", "text": "Es una preferencia personal. No tienes que elegir un bando.",
+            "statEffect": { "empathy": 1 },
+            "relEffect": { "zipi": 3 },
+            "next": "z01_neutral_end"
+          },
+          {
+            "id": "z01_c_transfer", "text": "Esto es para Relaciones Humanas, no para el Switchboard.",
+            "statEffect": { "efficiency": 2 },
+            "relEffect": { "zipi": -1 },
+            "next": "z01_transfer_end"
+          }
+        ]
+      },
+      {
+        "id": "z01_explain_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Ah. Entendido. Es un acto performativo, no descriptivo. Como cuando los humanos dicen '¿qué tal?' sin esperar una respuesta honesta.",
+        "next": "z01_explain2"
+      },
+      {
+        "id": "z01_explain2", "type": "dialogue", "speaker": "caller",
+        "text": "En mi planeta respondemos con datos exactos de estado físico y emocional. Aquí eso parece incomodar a la gente.",
+        "next": "z01_choice2"
+      },
+      {
+        "id": "z01_cebolla_end", "type": "end",
+        "text": "Información registrada. Me uno al bando de la cebolla. Aunque no entiendo por qué algo tan fundamental no está regulado. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "z01_neutral_end", "type": "end",
+        "text": "Sin bando. Entendido. Esto es más complejo de lo que pensaba. Gracias por la orientación. Buenas noches, operador.",
+        "flagSet": { "zipi_trusts_operator": true }
+      },
+      {
+        "id": "z01_transfer_end", "type": "end",
+        "text": "Entendido. ¿Relaciones Humanas también sabe lo de la tortilla? Buenas noches.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "zipi_02",
+    "callerId": "zipi",
+    "shift": 3,
+    "moodOnAnswer": "confused",
+    "notebookSummary": "Zipi llama porque no entiende el Titanic. ¿Por qué lloran los humanos si ya saben el final?",
+    "nodes": [
+      {
+        "id": "z02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Zipi de nuevo. Tengo una nueva consulta cultural urgente.",
+        "next": "z02_n2"
+      },
+      {
+        "id": "z02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Anoche vi la película Titanic. Todos mis vecinos lloraron. Yo no lloré porque el barco se hundió exactamente como se anunciaba en el título.",
+        "next": "z02_choice1"
+      },
+      {
+        "id": "z02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "z02_c_explain_emotion", "text": "Los humanos lloran por los personajes, no por el barco. La empatía narrative es compleja.",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "relEffect": { "zipi": 3 },
+            "next": "z02_emotion_branch"
+          },
+          {
+            "id": "z02_c_funny", "text": "Técnicamente tienes razón. El título es bastante descriptivo.",
+            "statEffect": { "chaos": 1, "empathy": 1 },
+            "relEffect": { "zipi": 2 },
+            "next": "z02_funny_branch"
+          }
+        ]
+      },
+      {
+        "id": "z02_emotion_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Entiendo. Los humanos proyectan su experiencia emocional en entidades ficticias y luego experimentan emociones reales como si la ficción fuera real.",
+        "next": "z02_emotion2"
+      },
+      {
+        "id": "z02_emotion2", "type": "dialogue", "speaker": "caller",
+        "text": "¿Y eso... es agradable? ¿Llorar por cosas que no han ocurrido?",
+        "next": "z02_choice2"
+      },
+      {
+        "id": "z02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "z02_c_yes_catharsis", "text": "Para muchos humanos, sí. Se llama catarsis. Procesar emociones a través de la ficción.",
+            "statEffect": { "empathy": 2 },
+            "relEffect": { "zipi": 3 },
+            "flagSet": { "zipi_trusts_operator": true },
+            "next": "z02_catharsis_end"
+          },
+          {
+            "id": "z02_c_complicated", "text": "Es complicado. A veces sí, a veces duele y no saben por qué lo hacen igualmente.",
+            "statEffect": { "empathy": 1, "curiosity": 1 },
+            "relEffect": { "zipi": 2 },
+            "next": "z02_complicated_end"
+          }
+        ]
+      },
+      {
+        "id": "z02_catharsis_end", "type": "end",
+        "text": "Catarsis. Lo agrego a mi diccionario emocional. Gracias, operador. Usted explica las cosas humanas mejor que los humanos. Buenas noches.",
+        "flagSet": { "zipi_trusts_operator": true }
+      },
+      {
+        "id": "z02_complicated_end", "type": "end",
+        "text": "Los humanos son fascinantes. Hacen cosas que les duelen voluntariamente. En mi planeta eso requería permiso especial. Buenas noches.",
+        "flagSet": { "zipi_trusts_operator": true }
+      },
+      {
+        "id": "z02_funny_branch", "type": "dialogue", "speaker": "caller",
+        "text": "¿Están llorando porque no leyeron el título? Eso tampoco tiene sentido. El título está muy claro.",
+        "next": "z02_emotion_branch"
+      }
+    ]
+  },
+  {
+    "id": "zipi_03",
+    "callerId": "zipi",
+    "shift": 7,
+    "moodOnAnswer": "serious",
+    "notebookSummary": "Zipi llama con algo diferente. No es una pregunta cultural. Ha percibido una anomalía dimensional cerca del Switchboard.",
+    "nodes": [
+      {
+        "id": "z03_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Zipi. Esta vez no llamo por una pregunta cultural.",
+        "next": "z03_n2"
+      },
+      {
+        "id": "z03_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Mi especie tiene sensores biológicos para anomalías espaciotemporales. Llevamos 48 horas con lecturas elevadas en este sector.",
+        "next": "z03_n3"
+      },
+      {
+        "id": "z03_n3", "type": "dialogue", "speaker": "caller",
+        "text": "El epicentro está en... este número de teléfono. En donde usted trabaja.",
+        "next": "z03_choice1"
+      },
+      {
+        "id": "z03_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "z03_c_explain", "text": "¿Qué tipo de anomalía es exactamente?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "zipi": 2 },
+            "flagSet": { "zipi_detected_anomaly": true },
+            "next": "z03_explain_branch"
+          },
+          {
+            "id": "z03_c_deny", "text": "Esto es solo una oficina. No hay anomalías.",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "zipi": -2 },
+            "next": "z03_deny_end"
+          },
+          {
+            "id": "z03_c_confirm", "text": "¿Puedo preguntarte algo? ¿Has notado algo raro en el tiempo cerca de aquí?",
+            "statEffect": { "curiosity": 2, "empathy": 1 },
+            "relEffect": { "zipi": 3 },
+            "next": "z03_confirm_branch"
+          }
+        ]
+      },
+      {
+        "id": "z03_explain_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Es un nodo de convergencia. En mi idioma se llamaría 'lugar donde las historias se tocan'. Múltiples líneas temporales usando el mismo punto de acceso.",
+        "next": "z03_explain2"
+      },
+      {
+        "id": "z03_explain2", "type": "dialogue", "speaker": "caller",
+        "text": "Normalmente son inestables. Duran días. Pero este lleva... mucho tiempo. Décadas, al menos.",
+        "next": "z03_explain3"
+      },
+      {
+        "id": "z03_explain3", "type": "dialogue", "speaker": "caller",
+        "text": "Y hay algo atrapado dentro. Algo que intenta comunicarse hacia afuera. ¿Usted lo nota?",
+        "next": "z03_choice2"
+      },
+      {
+        "id": "z03_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "z03_c_yes_notice", "text": "Sí. He notado cosas extrañas.",
+            "statEffect": { "curiosity": 2, "empathy": 1 },
+            "relEffect": { "zipi": 4 },
+            "flagSet": { "zipi_knows_truth": true },
+            "next": "z03_yes_end"
+          },
+          {
+            "id": "z03_c_not_sure", "text": "No estoy seguro de qué noto y qué me imagino.",
+            "statEffect": { "curiosity": 1 },
+            "relEffect": { "zipi": 2 },
+            "next": "z03_notsure_end"
+          }
+        ]
+      },
+      {
+        "id": "z03_yes_end", "type": "end",
+        "text": "Bien. Si necesita ayuda para navegar el nodo, llámeme. Tengo formación en anomalías tipo 4. Buenas noches, operador. Ten cuidado.",
+        "flagSet": { "zipi_ally": true, "zipi_knows_truth": true }
+      },
+      {
+        "id": "z03_notsure_end", "type": "end",
+        "text": "Eso es normal cerca de los nodos. Distorsionan la percepción. Buenas noches. Llámeme si necesita orientación extradimensional.",
+        "flagSet": { "zipi_ally": true }
+      },
+      {
+        "id": "z03_deny_end", "type": "end",
+        "text": "Mis sensores dicen lo contrario. Pero es su decisión creerlos o no. Buenas noches, operador.",
+        "flagSet": {}
+      },
+      {
+        "id": "z03_confirm_branch", "type": "dialogue", "speaker": "caller",
+        "text": "¿Raro en el tiempo? Sí. En un radio de 200 metros hay zonas donde el tiempo fluye a velocidades ligeramente distintas. Creía que era un fallo de calibración.",
+        "next": "z03_explain_branch"
+      }
+    ]
+  },
+  {
+    "id": "zipi_04",
+    "callerId": "zipi",
+    "shift": 12,
+    "moodOnAnswer": "concerned",
+    "unlockCondition": { "flagSet": "zipi_trusts_operator" },
+    "notebookSummary": "Zipi llama con coordenadas extradimensionales del Switchboard. Dice que desde fuera parece un faro. Y que hay otras entidades observando.",
+    "nodes": [
+      {
+        "id": "z04_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Zipi. Tengo información que he tardado semanas en procesar correctamente.",
+        "next": "z04_n2"
+      },
+      {
+        "id": "z04_n2", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard, desde fuera de su dimensión, parece un faro. Emite una señal que atrae entidades de otras líneas temporales.",
+        "next": "z04_n3"
+      },
+      {
+        "id": "z04_n3", "type": "dialogue", "speaker": "caller",
+        "text": "La señal es el operador. Usted. Mientras usted esté ahí, el faro funciona. Atrae llamadas de cosas que no deberían poder llamar.",
+        "next": "z04_choice1"
+      },
+      {
+        "id": "z04_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "z04_c_what_entities", "text": "¿Qué tipo de entidades están observando?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "zipi": 2 },
+            "next": "z04_entities_branch"
+          },
+          {
+            "id": "z04_c_stop_signal", "text": "¿Cómo se para la señal?",
+            "statEffect": { "curiosity": 2 },
+            "flagSet": { "knows_signal_theory": true },
+            "next": "z04_stop_branch"
+          }
+        ]
+      },
+      {
+        "id": "z04_entities_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Algunas inofensivas. Personas en bucles temporales buscando salida. Algunas no tanto. El Departamento Desconocido, por ejemplo, no es un departamento.",
+        "next": "z04_entities2"
+      },
+      {
+        "id": "z04_entities2", "type": "end",
+        "text": "Es una apertura. No sé adónde lleva. Nadie que haya entrado ha podido explicarlo. Buenas noches, operador. Tenga cuidado con la extensión 7730.",
+        "flagSet": { "unknown_dept_is_aperture": true, "zipi_ally": true }
+      },
+      {
+        "id": "z04_stop_branch", "type": "end",
+        "text": "Dos formas: que el operador decida voluntariamente marcharse — el Switchboard no puede retener a alguien que elige libremente irse. O que el operador sea reemplazado. Pero la segunda opción... no recomiendo investigarla. Buenas noches.",
+        "flagSet": { "knows_signal_theory": true, "zipi_ally": true }
+      }
+    ]
+  }
+]

@@ -1,0 +1,124 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+}
+
+.bubble {
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-lo);
+  border-radius: var(--r-lg);
+  padding: 16px 18px;
+  max-width: 520px;
+}
+
+.bubble.caller   { border-left: 2px solid var(--amber); }
+.bubble.operator { border-left: 2px solid var(--teal); margin-left: 32px; }
+.bubble.system {
+  background: transparent;
+  border-color: transparent;
+  border-left: 2px solid var(--text-lo);
+  font-style: italic;
+}
+
+.speaker {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+  margin-bottom: 6px;
+}
+
+.caller .speaker  { color: var(--amber); }
+.operator .speaker{ color: var(--teal); }
+
+.text {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-hi);
+}
+
+.system .text { color: var(--text-md); font-size: 13px; }
+
+.cursor {
+  display: inline-block;
+  animation: blink 0.6s step-end infinite;
+  color: var(--amber);
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.continueBtn {
+  align-self: flex-start;
+  font-size: 12px;
+  color: var(--text-lo);
+  padding: 5px 10px;
+  border: 0.5px solid var(--border-lo);
+  border-radius: var(--r-sm);
+  background: var(--bg-3);
+  transition: color var(--t-fast), border-color var(--t-fast);
+}
+
+.continueBtn:hover { color: var(--text-hi); border-color: var(--border-md); }
+
+.skipBtn {
+  align-self: flex-start;
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+  padding: 4px 8px;
+  background: transparent;
+}
+
+.skipBtn:hover { color: var(--text-md); }
+
+/* ── Choices ─────────────────────────────────── */
+.choicePanel {
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.choicePrompt {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.choiceBtn {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 11px 14px;
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-lo);
+  border-radius: var(--r-md);
+  text-align: left;
+  font-size: 13px;
+  color: var(--text-md);
+  transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+  line-height: 1.5;
+}
+
+.choiceBtn:hover {
+  background: var(--bg-3);
+  border-color: var(--amber-dim);
+  color: var(--text-hi);
+}
+
+.choiceArrow {
+  color: var(--amber);
+  flex-shrink: 0;
+  margin-top: 1px;
+}

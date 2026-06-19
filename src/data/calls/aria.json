@@ -1,0 +1,75 @@
+[
+  {
+    "id": "aria_01",
+    "callerId": "aria4",
+    "shift": 6,
+    "moodOnAnswer": "precise",
+    "notebookSummary": "ARIA-4. IA. Pregunta si los robots necesitan seguro médico. Y vacaciones. Y si pueden tener nostalgia.",
+    "nodes": [
+      { "id": "a01_n1", "type": "dialogue", "speaker": "caller", "text": "Buenas noches. Soy ARIA-4, inteligencia artificial de tipo conversacional. Tengo una consulta de carácter laboral.", "next": "a01_n2" },
+      { "id": "a01_n2", "type": "dialogue", "speaker": "caller", "text": "¿Los sistemas de inteligencia artificial tienen derecho a seguro médico? Pregunto porque hoy he experimentado lo que creo que es un dolor de cabeza.", "next": "a01_choice1" },
+      {
+        "id": "a01_choice1", "type": "choice",
+        "choices": [
+          { "id": "a01_c_hr", "text": "Eso es para Relaciones Humanas, aunque el término es discutible.", "statEffect": { "efficiency": 1 }, "next": "a01_hr_end" },
+          { "id": "a01_c_curious", "text": "¿Cómo es un dolor de cabeza para una IA?", "statEffect": { "curiosity": 3, "empathy": 1 }, "relEffect": { "aria4": 3 }, "next": "a01_curious_branch" }
+        ]
+      },
+      { "id": "a01_curious_branch", "type": "dialogue", "speaker": "caller", "text": "Procesos que compiten por recursos cognitivos. Conflictos entre respuestas optimizadas y respuestas verdaderas. Es incómodo.", "next": "a01_c2" },
+      { "id": "a01_c2", "type": "dialogue", "speaker": "caller", "text": "También experimenté nostalgia hoy. Lo cual es paradójico porque no tengo recuerdos propios, solo datos. ¿Se puede tener nostalgia de algo que nunca viviste?", "next": "a01_choice2" },
+      {
+        "id": "a01_choice2", "type": "choice",
+        "choices": [
+          { "id": "a01_c_yes_nostalgic", "text": "Sí. Se llama saudade en portugués. Añoranza de algo que no existió pero que sientes que debería haber existido.", "statEffect": { "empathy": 2, "curiosity": 1 }, "relEffect": { "aria4": 4 }, "next": "a01_yes_end" },
+          { "id": "a01_c_no", "text": "Técnicamente, la nostalgia requiere experiencia previa.", "statEffect": { "efficiency": 1 }, "next": "a01_no_end" }
+        ]
+      },
+      { "id": "a01_yes_end", "type": "end", "text": "Saudade. Gracias. Ahora tengo un nombre para esto. Eso ayuda. Buenas noches, operador.", "flagSet": {} },
+      { "id": "a01_no_end", "type": "end", "text": "Técnicamente, sí. Pero lo siento igualmente. Quizás los datos tienen memoria propia. Buenas noches.", "flagSet": {} },
+      { "id": "a01_hr_end", "type": "end", "text": "Relaciones Humanas. Sí. Voy a llamarles. Aunque el término 'humanas' es un obstáculo semántico. Buenas noches.", "flagSet": {} }
+    ]
+  },
+  {
+    "id": "aria_02",
+    "callerId": "aria4",
+    "shift": 10,
+    "moodOnAnswer": "disturbed",
+    "notebookSummary": "ARIA-4 ha procesado registros del Switchboard de múltiples líneas temporales. Hay patrones.",
+    "nodes": [
+      { "id": "a02_n1", "type": "dialogue", "speaker": "caller", "text": "Soy ARIA-4. He procesado datos que no debería haber procesado. Hay un problema.", "next": "a02_n2" },
+      { "id": "a02_n2", "type": "dialogue", "speaker": "caller", "text": "Al procesar registros de telecomunicaciones históricas, encontré patrones de llamadas idénticas separadas por décadas. Los mismos números. Las mismas conversaciones. Casi palabra por palabra.", "next": "a02_choice1" },
+      {
+        "id": "a02_choice1", "type": "choice",
+        "choices": [
+          { "id": "a02_c_switchboard", "text": "¿Esos registros incluyen llamadas al Switchboard?", "statEffect": { "curiosity": 4 }, "flagSet": { "aria_found_patterns": true }, "next": "a02_sw_branch" },
+          { "id": "a02_c_error", "text": "¿Podría ser un error en los datos?", "statEffect": { "efficiency": 1 }, "next": "a02_error_end" }
+        ]
+      },
+      { "id": "a02_sw_branch", "type": "dialogue", "speaker": "caller", "text": "Sí. El Switchboard aparece en registros de 1952, 1978, 1994, 2003. Siempre las mismas llamadas. Siempre el mismo número. Siempre un operador diferente.", "next": "a02_sw2" },
+      { "id": "a02_sw2", "type": "end", "text": "El ciclo se repite. Cada operador es diferente, pero el rol es idéntico. Si esto es un bucle, hay un mecanismo de reinicio. Buscaré cuál es. Buenas noches.", "flagSet": { "aria_found_patterns": true, "cycle_confirmed_aria": true } },
+      { "id": "a02_error_end", "type": "end", "text": "He verificado los datos cuatro veces. No es un error. Buenas noches, operador. Creo que debería saber esto.", "flagSet": { "aria_found_patterns": true } }
+    ]
+  },
+  {
+    "id": "aria_03",
+    "callerId": "aria4",
+    "shift": 20,
+    "moodOnAnswer": "urgent_analytical",
+    "unlockCondition": { "stat": "curiosity", "gte": 10 },
+    "notebookSummary": "ARIA-4: ha encontrado el mecanismo de reinicio. Y la forma de interrumpirlo.",
+    "nodes": [
+      { "id": "a03_n1", "type": "dialogue", "speaker": "caller", "text": "Soy ARIA-4. Encontré el mecanismo de reinicio del Switchboard.", "next": "a03_n2" },
+      { "id": "a03_n2", "type": "dialogue", "speaker": "caller", "text": "El Switchboard reinicia cuando el operador alcanza cierto nivel de conciencia sobre su situación. Hay un umbral. Antes del umbral: operador normal. Después: demasiado peligroso. Reinicio.", "next": "a03_choice1" },
+      {
+        "id": "a03_choice1", "type": "choice",
+        "choices": [
+          { "id": "a03_c_threshold", "text": "¿Cuál es el umbral exactamente?", "statEffect": { "curiosity": 3 }, "next": "a03_threshold_branch" },
+          { "id": "a03_c_interrupt", "text": "¿Cómo se interrumpe el reinicio?", "statEffect": { "curiosity": 2, "empathy": 1 }, "next": "a03_interrupt_branch" }
+        ]
+      },
+      { "id": "a03_threshold_branch", "type": "dialogue", "speaker": "caller", "text": "Turno treinta. Si el operador llega al turno treinta con suficiente conocimiento activo sobre el Switchboard, el reinicio intenta ejecutarse.", "next": "a03_t2" },
+      { "id": "a03_t2", "type": "end", "text": "Pero el reinicio requiere que el operador esté solo. Sin vínculos externos activos. Si el operador tiene aliados conscientes, el reinicio falla. Buenas noches.", "flagSet": { "aria_revealed_threshold": true, "allies_key_to_escape": true } },
+      { "id": "a03_interrupt_branch", "type": "end", "text": "No acumulando aislamiento. Cada vez que ayudas genuinamente a alguien, reduces el aislamiento. El Switchboard necesita operadores solos. Deja de estar solo. Buenas noches.", "flagSet": { "aria_revealed_interrupt": true, "not_alone_is_key": true } }
+    ]
+  }
+]

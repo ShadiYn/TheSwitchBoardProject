@@ -1,0 +1,66 @@
+[
+  {
+    "id": "don_severino_01",
+    "callerId": "don_severino",
+    "shift": 2,
+    "moodOnAnswer": "calm",
+    "notebookSummary": "Don Severino. Vive dentro de una montaña desde hace 30 años. Llama porque necesita el periódico.",
+    "nodes": [
+      { "id": "ds01_n1", "type": "dialogue", "speaker": "caller", "text": "Buenas noches. Soy Severino. Vivo en el interior de la Sierra Nevada, en una cueva habilitada.", "next": "ds01_n2" },
+      { "id": "ds01_n2", "type": "dialogue", "speaker": "caller", "text": "Llevo treinta y dos años aquí. Llamo porque necesito que alguien me envíe el periódico del domingo. Aquí no llega.", "next": "ds01_choice1" },
+      {
+        "id": "ds01_choice1", "type": "choice",
+        "choices": [
+          { "id": "ds01_c_how", "text": "¿Cómo llama si vive dentro de una montaña?", "statEffect": { "curiosity": 2 }, "next": "ds01_how_branch" },
+          { "id": "ds01_c_help", "text": "El periódico es fácil. ¿Qué edición necesita?", "statEffect": { "efficiency": 2 }, "relEffect": { "don_severino": 3 }, "next": "ds01_help_end" }
+        ]
+      },
+      { "id": "ds01_how_branch", "type": "dialogue", "speaker": "caller", "text": "La montaña tiene buena cobertura. La roca actúa como amplificador. Es una suerte.", "next": "ds01_how2" },
+      { "id": "ds01_how2", "type": "dialogue", "speaker": "caller", "text": "También tengo vecinos. Unos trols. Son ruidosos, pero buenos en el fondo. Tenemos disputas de convivencia.", "next": "ds01_help_end" },
+      { "id": "ds01_help_end", "type": "end", "text": "La edición nacional, si puede ser. Gracias. Es reconfortante hablar con alguien de fuera de vez en cuando. Buenas noches.", "flagSet": {} }
+    ]
+  },
+  {
+    "id": "don_severino_02",
+    "callerId": "don_severino",
+    "shift": 5,
+    "moodOnAnswer": "thoughtful",
+    "notebookSummary": "Severino tiene un mapa de la montaña. Dibujado a mano. Dice que tiene 400 años.",
+    "nodes": [
+      { "id": "ds02_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Severino. Les llamo porque encontré algo interesante mientras ampliaba una galería.", "next": "ds02_n2" },
+      { "id": "ds02_n2", "type": "dialogue", "speaker": "caller", "text": "Un mapa. Dibujado en la pared de roca. Lo he fotografiado. Es muy antiguo. Tiene marcas que no reconozco.", "next": "ds02_choice1" },
+      {
+        "id": "ds02_choice1", "type": "choice",
+        "choices": [
+          { "id": "ds02_c_describe", "text": "¿Cómo son las marcas?", "statEffect": { "curiosity": 3 }, "next": "ds02_describe_branch" },
+          { "id": "ds02_c_paranormal", "text": "Eso suena a Asuntos Paranormales o Incidentes Temporales.", "next": "ds02_transfer_end" }
+        ]
+      },
+      { "id": "ds02_describe_branch", "type": "dialogue", "speaker": "caller", "text": "Líneas que se cruzan en un punto central. Y alrededor de ese punto, símbolos que parecen teléfonos. O quizás centralitas.", "next": "ds02_d2" },
+      { "id": "ds02_d2", "type": "end", "text": "Tengo la sensación de que ese punto central no está dentro de la montaña. O quizás está en todas partes y en ninguna. Buenas noches.", "flagSet": { "severino_map_mentioned": true } },
+      { "id": "ds02_transfer_end", "type": "end", "text": "Sí, puede que tengan algo que decir al respecto. Aunque el mapa parece conectado con algo más... cotidiano. Buenas noches.", "flagSet": { "severino_map_mentioned": true } }
+    ]
+  },
+  {
+    "id": "don_severino_03",
+    "callerId": "don_severino",
+    "shift": 11,
+    "moodOnAnswer": "excited",
+    "unlockCondition": { "flagSet": "severino_map_mentioned" },
+    "notebookSummary": "Severino: ha descifrado el mapa. El punto central es el Switchboard. Lleva 400 años en ese lugar.",
+    "nodes": [
+      { "id": "ds03_n1", "type": "dialogue", "speaker": "caller", "text": "Severino. He descifrado el mapa. El punto central es una coordenada específica en la ciudad.", "next": "ds03_n2" },
+      { "id": "ds03_n2", "type": "dialogue", "speaker": "caller", "text": "Es la dirección de su centralita. Del Switchboard. El mapa lleva aquí cuatrocientos años. Alguien planificó esto.", "next": "ds03_choice1" },
+      {
+        "id": "ds03_choice1", "type": "choice",
+        "choices": [
+          { "id": "ds03_c_who", "text": "¿Hay algún nombre en el mapa? ¿Un autor?", "statEffect": { "curiosity": 4 }, "next": "ds03_who_branch" },
+          { "id": "ds03_c_purpose", "text": "¿Para qué se planificó?", "statEffect": { "curiosity": 3 }, "next": "ds03_purpose_end" }
+        ]
+      },
+      { "id": "ds03_who_branch", "type": "dialogue", "speaker": "caller", "text": "Hay dos iniciales. E.C. Y una fecha: 1623. Cuatrocientos años antes de que usted estuviera ahí.", "next": "ds03_who2" },
+      { "id": "ds03_who2", "type": "end", "text": "E.C. ¿Le dice algo? Los trols dicen que las montañas guardan memoria. Esta montaña recuerda el Switchboard desde muy antes. Buenas noches.", "flagSet": { "ec_initials_found": true, "switchboard_age_known": true } },
+      { "id": "ds03_purpose_end", "type": "end", "text": "Para conectar. Eso dicen los símbolos. Conectar historias, personas, tiempos. Una intención noble. Qué pasó luego es la pregunta. Buenas noches.", "flagSet": { "switchboard_original_purpose_known": true } }
+    ]
+  }
+]

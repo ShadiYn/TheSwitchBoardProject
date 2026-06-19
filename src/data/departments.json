@@ -1,0 +1,74 @@
+[
+  {
+    "id": "paranormal",
+    "name": "Asuntos Paranormales",
+    "shortName": "Paranormal",
+    "emoji": "👻",
+    "description": "Fantasmas, maldiciones, objetos animados, presencias nocturnas.",
+    "waitTime": "3-5 minutos",
+    "extension": "3310"
+  },
+  {
+    "id": "magical_creatures",
+    "name": "Criaturas Mágicas",
+    "shortName": "Criaturas",
+    "emoji": "🐉",
+    "description": "Dragones, fénix, grifos y mascotas encantadas con problemas de conducta.",
+    "waitTime": "5-10 minutos",
+    "extension": "4420"
+  },
+  {
+    "id": "temporal",
+    "name": "Incidentes Temporales",
+    "shortName": "Temporal",
+    "emoji": "⏰",
+    "description": "Bucles de tiempo, paradojas, viajeros varados, años equivocados.",
+    "waitTime": "Indeterminado",
+    "extension": "1988"
+  },
+  {
+    "id": "hr",
+    "name": "Relaciones Humanas",
+    "shortName": "RR.HH.",
+    "emoji": "💼",
+    "description": "Conflictos laborales entre humanos, no-humanos y entidades empleadas.",
+    "waitTime": "2-4 minutos",
+    "extension": "9001"
+  },
+  {
+    "id": "extraterrestrial",
+    "name": "Soporte Extraterrestre",
+    "shortName": "Ext. Support",
+    "emoji": "🛸",
+    "description": "Aliens en proceso de integración, malentendidos culturales, formularios.",
+    "waitTime": "7-12 minutos",
+    "extension": "5505"
+  },
+  {
+    "id": "emergency",
+    "name": "Emergencias",
+    "shortName": "Emergencias",
+    "emoji": "🚨",
+    "description": "Urgencias de cualquier naturaleza. Algunos callers no saben que están muertos.",
+    "waitTime": "Inmediato",
+    "extension": "112"
+  },
+  {
+    "id": "psych",
+    "name": "Servicios Psicológicos",
+    "shortName": "Psicología",
+    "emoji": "🧠",
+    "description": "Para cuando el problema no es sobrenatural sino simplemente muy humano.",
+    "waitTime": "10-15 minutos",
+    "extension": "7700"
+  },
+  {
+    "id": "unknown",
+    "name": "Departamento Desconocido",
+    "shortName": "Desconocido",
+    "emoji": "❓",
+    "description": "La línea existe en el panel. No hay ficha de departamento.",
+    "waitTime": "—",
+    "extension": "7730"
+  }
+]

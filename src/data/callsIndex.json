@@ -1,0 +1,58 @@
+{
+  "harold_01":       { "file": "harold.json",    "unlockCondition": null },
+  "harold_02":       { "file": "harold.json",    "unlockCondition": null },
+  "harold_03":       { "file": "harold.json",    "unlockCondition": null },
+  "harold_04":       { "file": "harold.json",    "unlockCondition": { "stat": "empathy", "gte": 5 } },
+  "harold_05":       { "file": "harold.json",    "unlockCondition": { "flagSet": "harold_trusted" } },
+
+  "margaret_01":     { "file": "margaret.json",  "unlockCondition": null },
+  "margaret_02":     { "file": "margaret.json",  "unlockCondition": null },
+  "margaret_03":     { "file": "margaret.json",  "unlockCondition": null },
+  "margaret_04":     { "file": "margaret.json",  "unlockCondition": { "flagSet": "cat_spoke_to_operator" } },
+
+  "zipi_01":         { "file": "zipi.json",      "unlockCondition": null },
+  "zipi_02":         { "file": "zipi.json",      "unlockCondition": null },
+  "zipi_03":         { "file": "zipi.json",      "unlockCondition": null },
+  "zipi_04":         { "file": "zipi.json",      "unlockCondition": { "flagSet": "zipi_trusts_operator" } },
+
+  "vlad_01":         { "file": "vlad.json",      "unlockCondition": null },
+  "vlad_02":         { "file": "vlad.json",      "unlockCondition": null },
+  "vlad_03":         { "file": "vlad.json",      "unlockCondition": { "flagSet": "vlad_revealed_age" } },
+
+  "tomas_01":        { "file": "tomas.json",     "unlockCondition": null },
+  "tomas_02":        { "file": "tomas.json",     "unlockCondition": null },
+  "tomas_03":        { "file": "tomas.json",     "unlockCondition": { "flagSet": "bubi_safe" } },
+
+  "unknown_01":      { "file": "unknown.json",   "unlockCondition": null },
+  "unknown_02":      { "file": "unknown.json",   "unlockCondition": { "flagSet": "heard_unknown_caller" } },
+  "unknown_03":      { "file": "unknown.json",   "unlockCondition": { "flagSet": "found_operator_files" } },
+
+  "self_01":         { "file": "self.json",      "unlockCondition": null },
+
+  "ramona_01":       { "file": "ramona.json",    "unlockCondition": null },
+  "ramona_02":       { "file": "ramona.json",    "unlockCondition": null },
+  "ramona_03":       { "file": "ramona.json",    "unlockCondition": { "flagSet": "ramona_knows_shes_dead" } },
+
+  "aria_01":         { "file": "aria.json",      "unlockCondition": null },
+  "aria_02":         { "file": "aria.json",      "unlockCondition": null },
+  "aria_03":         { "file": "aria.json",      "unlockCondition": { "stat": "curiosity", "gte": 10 } },
+
+  "don_severino_01": { "file": "don_severino.json", "unlockCondition": null },
+  "don_severino_02": { "file": "don_severino.json", "unlockCondition": null },
+  "don_severino_03": { "file": "don_severino.json", "unlockCondition": { "flagSet": "severino_map_mentioned" } },
+
+  "yuki_01":         { "file": "yuki.json",      "unlockCondition": null },
+  "yuki_02":         { "file": "yuki.json",      "unlockCondition": null },
+
+  "foxglove_01":     { "file": "foxglove.json",  "unlockCondition": null },
+  "foxglove_02":     { "file": "foxglove.json",  "unlockCondition": { "flagSet": "foxglove_case_open" } },
+
+  "insomnio_01":     { "file": "insomnio.json",  "unlockCondition": null },
+  "insomnio_02":     { "file": "insomnio.json",  "unlockCondition": { "flagSet": "insomnio_first_contact" } },
+
+  "neptuno_01":      { "file": "neptuno.json",   "unlockCondition": null },
+  "neptuno_02":      { "file": "neptuno.json",   "unlockCondition": null },
+
+  "cronista_01":     { "file": "cronista.json",  "unlockCondition": null },
+  "cronista_02":     { "file": "cronista.json",  "unlockCondition": { "flagSet": "cronista_year_noted" } }
+}

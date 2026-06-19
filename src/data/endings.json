@@ -1,0 +1,87 @@
+[
+  {
+    "id": "buenas_noches",
+    "name": "Buenas noches",
+    "category": "good",
+    "priority": 5,
+    "condition": { "AND": [
+      { "stat": "empathy", "gte": 25 },
+      { "flagSet": "knows_voluntary_stay_rule" }
+    ]},
+    "text": "Eliges quedarte. No porque el Switchboard te retenga, sino porque entiendes lo que significa ayudar a quien llama de noche. El Switchboard, al no poder reclamar lo que se da libremente, se aquieta. Las llamadas siguen. Pero ahora son, simplemente, tu trabajo. Buenas noches, operador."
+  },
+  {
+    "id": "salida_emergencia",
+    "name": "Salida de emergencia",
+    "category": "good",
+    "priority": 4,
+    "condition": { "AND": [
+      { "stat": "curiosity", "gte": 25 },
+      { "flagSet": "knowledge_is_exit_known" }
+    ]},
+    "text": "Reúnes cada pista, cada fragmento. El conocimiento, como dijo Ernesto, es la salida. En el turno treinta entiendes el Switchboard mejor que él mismo. Y al entenderlo completamente, dejas de ser su ancla. Sales por una puerta que solo existe para quien sabe que está ahí."
+  },
+  {
+    "id": "octavo_archivo",
+    "name": "El octavo archivo",
+    "category": "tragic",
+    "priority": 3,
+    "condition": { "AND": [
+      { "flagNotSet": "knows_voluntary_stay_rule" },
+      { "flagNotSet": "knowledge_is_exit_known" },
+      { "stat": "chaos", "lte": 10 }
+    ]},
+    "text": "El turno treinta llega sin que lo notes especialmente. El teléfono suena una última vez. Es tu propia voz. Cuelgas, porque no sabes que no debes. La línea se corta. En el archivador, una octava ficha aparece junto a las otras siete. Alguien, en algún lugar, contesta el teléfono y escucha tu voz contarle esto mismo."
+  },
+  {
+    "id": "departamento_desconocido",
+    "name": "Departamento Desconocido",
+    "category": "secret",
+    "priority": 8,
+    "condition": { "AND": [
+      { "runNumber": { "gte": 2 } },
+      { "stat": "chaos", "gte": 40 },
+      { "flagSet": "used_unknown_dept" }
+    ]},
+    "text": "Entras por la extensión 7730. Por dentro. Lo que hay allí no se puede describir con palabras humanas, pero entiendes, de golpe, todo: quién construyó el Switchboard, por qué, y qué hay realmente debajo de cada llamada. No vuelves a ser operador. Te conviertes en otra cosa. Algo que observa el ciclo completo desde fuera del tiempo."
+  },
+  {
+    "id": "callers_te_salvan",
+    "name": "Los callers te salvan",
+    "category": "good",
+    "priority": 6,
+    "condition": { "AND": [
+      { "stat": "empathy", "gte": 20 },
+      { "flagSet": "accepted_callers_help" }
+    ]},
+    "text": "En el turno treinta, el teléfono suena. Pero esta vez no estás solo. Harold, Margaret, Zipi, Tomás, Ramona — todos los que ayudaste — llaman simultáneamente, cada uno desde su línea. El Switchboard, diseñado para aislar al operador, no tiene protocolo para esto. Las líneas se cruzan, se sostienen mutuamente, y tú quedas libre en el centro de la red que construiste sin saberlo."
+  },
+  {
+    "id": "el_bucle",
+    "name": "El bucle",
+    "category": "neutral",
+    "priority": 1,
+    "condition": { "stat": "efficiency", "gte": 25 },
+    "text": "Hiciste bien tu trabajo. Cada llamada, gestionada con precisión. Cada transferencia, correcta. El turno treinta llega y el Switchboard, satisfecho con tu eficiencia, simplemente... continúa. Eres el operador. Siempre lo serás. No es una prisión exactamente. Es, simplemente, el trabajo. Para siempre."
+  },
+  {
+    "id": "el_cronista_libre",
+    "name": "El relevo",
+    "category": "secret",
+    "priority": 7,
+    "condition": { "AND": [
+      { "flagSet": "cronista_purpose_understood" },
+      { "stat": "empathy", "gte": 15 },
+      { "stat": "curiosity", "gte": 15 }
+    ]},
+    "text": "Entiendes, en el turno treinta, lo que Ernesto necesitaba: que alguien completara el ciclo que él empezó. Eliges quedarte, no atrapado, sino como guardián consciente. En algún punto de 1952, un joven Ernesto Cifuentes deja de llamar. Por fin, después de setenta años, descansa."
+  },
+  {
+    "id": "loop_fallback",
+    "name": "Lo que queda",
+    "category": "neutral",
+    "priority": 0,
+    "condition": null,
+    "text": "El turno treinta termina como terminan todos los turnos: con el teléfono en silencio y la ciudad durmiendo afuera. Lo que pase después depende de lo que hayas hecho con cada llamada. El Switchboard, de momento, espera. Como siempre ha esperado."
+  }
+]

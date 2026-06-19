@@ -1,0 +1,207 @@
+.scene {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  padding: 10px 20px 6px;
+}
+
+.shiftLabel {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.status {
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+  transition: color 0.3s ease;
+}
+
+.statusRinging {
+  color: var(--amber);
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+
+/* ── Desk ── */
+.deskWrap {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deskImg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ── Hotspot base ── */
+.hotspot {
+  position: absolute;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 0;
+}
+
+/* Zona del teléfono:
+   En desk_idle el teléfono está arriba-izquierda (~20-38% x, 5-40% y)
+   En desk_ringing el auricular está en el centro (~35-55% x, 25-60% y)
+   Usamos una zona que cubra ambos estados razonablemente */
+.hotspotPhone {
+  left: 20%;
+  top: 5%;
+  width: 22%;
+  height: 42%;
+}
+
+.hotspotPhone:hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  background: rgba(212, 144, 10, 0.08);
+  border: 1.5px solid rgba(212, 144, 10, 0.3);
+}
+
+/* Ringing: zona se desplaza al auricular en el centro */
+.hotspotRinging {
+  left: 33%;
+  top: 22%;
+  width: 24%;
+  height: 40%;
+  cursor: pointer;
+}
+
+/* Pulse ring animado detrás del auricular */
+.ringPulse {
+  position: absolute;
+  inset: 15%;
+  border-radius: 50%;
+  border: 2px solid var(--amber);
+  animation: pulseRing 1s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Nombre del llamante */
+.callerBubble {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-3);
+  border: 0.5px solid var(--amber-dim);
+  border-radius: var(--r-md);
+  padding: 5px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--amber);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+/* Dots de ring */
+.ringDots {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 5px;
+  pointer-events: none;
+}
+
+.ringDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.ringDotActive {
+  background: var(--amber);
+  transform: scale(1.5);
+}
+
+/* Anomalía overlay */
+.anomalyOverlay {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  color: var(--amber);
+  background: rgba(0,0,0,0.55);
+  padding: 4px 12px;
+  border-radius: var(--r-md);
+  pointer-events: none;
+}
+
+/* ── Popup ── */
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.popupText {
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  max-width: 420px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text-hi);
+  white-space: pre-line;
+}
+
+.popupClose {
+  margin-top: 12px;
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+}

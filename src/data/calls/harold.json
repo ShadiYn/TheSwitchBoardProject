@@ -1,0 +1,467 @@
+[
+  {
+    "id": "harold_01",
+    "callerId": "harold_finch",
+    "shift": 1,
+    "moodOnAnswer": "worried",
+    "notebookSummary": "Harold Finch. Dueño de Mermelada, un dragón con ansiedad post-operatoria. Quejas del vecino Sr. Méndez por rugidos nocturnos.",
+    "nodes": [
+      {
+        "id": "h01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Hola, sí, buenas noches. Perdone que llame tan tarde. Es que mi vecino lleva toda la semana quejándose.",
+        "next": "h01_n2"
+      },
+      {
+        "id": "h01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Mi dragón, Mermelada, tiene ansiedad desde que lo operamos del ala izquierda. Y de noche ruge. No puede evitarlo, pobrecito.",
+        "next": "h01_choice1"
+      },
+      {
+        "id": "h01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "h01_c_transfer", "text": "Le paso con Criaturas Mágicas, que tienen protocolos para esto.",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "harold_finch": 0 },
+            "next": "h01_transfer_node"
+          },
+          {
+            "id": "h01_c_ask", "text": "¿Qué tipo de dragón es Mermelada? ¿Cuántos años tiene?",
+            "statEffect": { "empathy": 1, "curiosity": 1 },
+            "relEffect": { "harold_finch": 2 },
+            "next": "h01_ask_branch"
+          },
+          {
+            "id": "h01_c_bolero", "text": "¿Ha probado con música? Dicen que a los dragones les gustan los boleros.",
+            "statEffect": { "empathy": 1 },
+            "relEffect": { "harold_finch": 1 },
+            "next": "h01_bolero_branch"
+          },
+          {
+            "id": "h01_c_chaos", "text": "Le transfiero al Departamento Desconocido.",
+            "condition": { "stat": "chaos", "gte": 20 },
+            "statEffect": { "chaos": 3 },
+            "flagSet": { "used_unknown_dept": true },
+            "next": "h01_chaos_end"
+          }
+        ]
+      },
+      {
+        "id": "h01_transfer_node", "type": "transfer",
+        "text": "Entendido. Le transfiero a Criaturas Mágicas.",
+        "department": "magical_creatures",
+        "next": "h01_end_transfer"
+      },
+      {
+        "id": "h01_end_transfer", "type": "end",
+        "text": "Muchas gracias. Espero que puedan ayudar a Mermelada. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "h01_ask_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Mermelada es un dragón de montaña, raza Pirenaica. Tiene cuatro años, así que todavía es muy joven, ¿sabe? Muy sensible emocionalmente.",
+        "next": "h01_ask2"
+      },
+      {
+        "id": "h01_ask2", "type": "dialogue", "speaker": "caller",
+        "text": "El veterinario dice que la operación salió bien, pero que el trauma del quirófano le dejó cicatriz psicológica. Yo le pongo audiolibros de noche, pero sigue rugiendo.",
+        "next": "h01_choice2"
+      },
+      {
+        "id": "h01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "h01_c_psych", "text": "Quizá necesita un especialista en trauma animal. ¿Ha probado Servicios Psicológicos?",
+            "statEffect": { "empathy": 1, "efficiency": 1 },
+            "relEffect": { "harold_finch": 2 },
+            "next": "h01_psych_end"
+          },
+          {
+            "id": "h01_c_audiolibro", "text": "¿Qué audiolibros le pone? Quizá el género es el problema.",
+            "statEffect": { "curiosity": 1 },
+            "relEffect": { "harold_finch": 3 },
+            "flagSet": { "harold_trusted": true },
+            "next": "h01_audiolibro_end"
+          }
+        ]
+      },
+      {
+        "id": "h01_psych_end", "type": "end",
+        "text": "Ay, no había pensado en eso. Voy a intentarlo. Muchas gracias, de verdad. Buenas noches.",
+        "flagSet": { "harold_trusted": true }
+      },
+      {
+        "id": "h01_audiolibro_end", "type": "end",
+        "text": "Ahora que lo dice... le estaba poniendo El Código Da Vinci. A lo mejor eso lo estresa. Le voy a poner algo más tranquilo. ¡Usted sí que entiende! Buenas noches.",
+        "flagSet": { "harold_trusted": true }
+      },
+      {
+        "id": "h01_bolero_branch", "type": "dialogue", "speaker": "caller",
+        "text": "¡Qué idea tan curiosa! ¿Le parece que funcionaría? Es que Mermelada es muy sensible al sonido...",
+        "next": "h01_bolero2"
+      },
+      {
+        "id": "h01_bolero2", "type": "dialogue", "speaker": "operator",
+        "text": "No lo sé con certeza, pero la música grave y lenta suele tener efecto calmante en reptiles grandes.",
+        "next": "h01_bolero_end"
+      },
+      {
+        "id": "h01_bolero_end", "type": "end",
+        "text": "Lo intentaré esta noche. ¡Gracias! Voy a buscar algo de Julio Iglesias. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "h01_chaos_end", "type": "end",
+        "text": "¿Al Departamento... Desconocido? ¿Y ese qué hace exactamente? Bueno, si usted lo dice... Muchas gracias. Creo.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "harold_02",
+    "callerId": "harold_finch",
+    "shift": 2,
+    "moodOnAnswer": "flustered",
+    "notebookSummary": "Harold llama de nuevo. Mermelada quemó el felpudo del Sr. Méndez. Situación escala.",
+    "nodes": [
+      {
+        "id": "h02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy yo otra vez, Harold Finch. Lo del dragón. Ha pasado algo.",
+        "next": "h02_n2"
+      },
+      {
+        "id": "h02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Mermelada ha quemado el felpudo del señor Méndez. Fue sin querer, estaba soñando. Pero el señor Méndez ha llamado a los bomberos.",
+        "next": "h02_choice1"
+      },
+      {
+        "id": "h02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "h02_c_emergency", "text": "Le paso a Emergencias antes de que los bomberos lleguen y la situación empeore.",
+            "statEffect": { "efficiency": 2 },
+            "relEffect": { "harold_finch": 0 },
+            "next": "h02_emergency_end"
+          },
+          {
+            "id": "h02_c_calm", "text": "Respire. ¿Ha podido hablar con el señor Méndez directamente?",
+            "statEffect": { "empathy": 2 },
+            "relEffect": { "harold_finch": 2 },
+            "next": "h02_calm_branch"
+          },
+          {
+            "id": "h02_c_hr", "text": "Esto es ya un asunto de convivencia vecinal. Le paso a Relaciones Humanas.",
+            "statEffect": { "efficiency": 1, "empathy": 1 },
+            "next": "h02_hr_end"
+          }
+        ]
+      },
+      {
+        "id": "h02_emergency_end", "type": "end",
+        "text": "Sí, sí, tiene razón. Voy a explicarle a los bomberos lo que pasó. Gracias.",
+        "flagSet": {}
+      },
+      {
+        "id": "h02_calm_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El señor Méndez no quiere hablar conmigo. Dice que si no me deshago de Mermelada presenta una denuncia.",
+        "next": "h02_calm2"
+      },
+      {
+        "id": "h02_calm2", "type": "dialogue", "speaker": "caller",
+        "text": "Llevo veinte años con ese dragón. No puedo... no puedo deshacerme de él.",
+        "next": "h02_choice2"
+      },
+      {
+        "id": "h02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "h02_c_empathy", "text": "Veinte años es mucho tiempo. Mermelada es su familia.",
+            "statEffect": { "empathy": 2 },
+            "relEffect": { "harold_finch": 4 },
+            "flagSet": { "harold_trusted": true },
+            "next": "h02_empathy_end"
+          },
+          {
+            "id": "h02_c_solution", "text": "Hay soluciones. Aislamiento acústico, zona de sueño especial. ¿Quiere que le pase con alguien que pueda asesorarle?",
+            "statEffect": { "empathy": 1, "efficiency": 1 },
+            "relEffect": { "harold_finch": 3 },
+            "next": "h02_solution_end"
+          }
+        ]
+      },
+      {
+        "id": "h02_empathy_end", "type": "end",
+        "text": "Sí... sí, es mi familia. Gracias por entenderlo. Buenas noches.",
+        "flagSet": { "harold_trusted": true }
+      },
+      {
+        "id": "h02_solution_end", "type": "end",
+        "text": "No había pensado en el aislamiento acústico. Es una idea excelente. Gracias. Buenas noches.",
+        "flagSet": { "harold_trusted": true }
+      },
+      {
+        "id": "h02_hr_end", "type": "end",
+        "text": "Relaciones Humanas, sí. Aunque Mermelada no es exactamente humano... En fin. Gracias.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "harold_03",
+    "callerId": "harold_finch",
+    "shift": 5,
+    "moodOnAnswer": "excited",
+    "notebookSummary": "Harold llama con novedad: Mermelada parece estar señalando cosas con el ala. Cosas que aún no han ocurrido.",
+    "nodes": [
+      {
+        "id": "h03_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Buenas noches. Harold Finch otra vez. Tengo que contarle algo sobre Mermelada.",
+        "next": "h03_n2"
+      },
+      {
+        "id": "h03_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Esta semana ha empezado a señalar cosas con el ala izquierda. La que fue operada. Al principio pensé que era un tic, pero...",
+        "next": "h03_n3"
+      },
+      {
+        "id": "h03_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Señaló el teléfono treinta segundos antes de que usted llamara para confirmarnos una cita en Criaturas Mágicas. Y luego señaló la ventana justo antes de que empezara a llover.",
+        "next": "h03_choice1"
+      },
+      {
+        "id": "h03_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "h03_c_curious", "text": "¿Ha apuntado en algún sitio todo lo que ha señalado? ¿Hay un patrón?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "harold_finch": 2 },
+            "flagSet": { "mermelada_predicts": true },
+            "next": "h03_curious_branch"
+          },
+          {
+            "id": "h03_c_rational", "text": "Los animales son sensibles a cambios de presión atmosférica. El teléfono pudo ser casualidad.",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "harold_finch": 0 },
+            "next": "h03_rational_end"
+          },
+          {
+            "id": "h03_c_wonder", "text": "Cuénteme más. ¿Qué otras cosas ha señalado exactamente?",
+            "statEffect": { "curiosity": 2, "empathy": 1 },
+            "relEffect": { "harold_finch": 3 },
+            "flagSet": { "mermelada_predicts": true },
+            "next": "h03_wonder_branch"
+          }
+        ]
+      },
+      {
+        "id": "h03_curious_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Tengo una libreta. Señaló el ala derecha justo antes de que el señor Méndez llamara al timbre. Señaló el suelo cuatro horas antes de que hubiera corte de luz en el edificio.",
+        "next": "h03_curious2"
+      },
+      {
+        "id": "h03_curious2", "type": "dialogue", "speaker": "caller",
+        "text": "Y ayer... señaló este teléfono. Y ahora le estoy llamando a usted.",
+        "next": "h03_mystery_hint"
+      },
+      {
+        "id": "h03_mystery_hint", "type": "dialogue", "speaker": "system",
+        "text": "[El gato de la oficina mira el teléfono fijamente durante tres segundos.]",
+        "next": "h03_choice2"
+      },
+      {
+        "id": "h03_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "h03_c_note", "text": "Siga apuntando todo. Esto podría ser importante.",
+            "statEffect": { "curiosity": 2 },
+            "relEffect": { "harold_finch": 3 },
+            "flagSet": { "mermelada_log_active": true },
+            "next": "h03_note_end"
+          },
+          {
+            "id": "h03_c_paranormal", "text": "Debería hablar con Asuntos Paranormales. Esto suena a percepción extrasensorial.",
+            "statEffect": { "efficiency": 1 },
+            "next": "h03_paranormal_end"
+          }
+        ]
+      },
+      {
+        "id": "h03_note_end", "type": "end",
+        "text": "Lo haré. Gracias por tomárselo en serio. Me alegra haberle llamado. Buenas noches.",
+        "flagSet": { "mermelada_log_active": true }
+      },
+      {
+        "id": "h03_paranormal_end", "type": "end",
+        "text": "Percepción extrasensorial... ¿en un dragón? Bueno, tampoco me sorprende tanto. Gracias. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "h03_rational_end", "type": "end",
+        "text": "Sí, quizá tiene razón. Aunque la llamada telefónica... bueno. Gracias, buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "h03_wonder_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Esta mañana señaló el periódico, justo la página de sucesos. Dos horas después salía en las noticias lo del incendio en la calle de abajo.",
+        "next": "h03_wonder2"
+      },
+      {
+        "id": "h03_wonder2", "type": "dialogue", "speaker": "caller",
+        "text": "No creo en estas cosas, ¿sabe? Soy una persona muy práctica. Pero hay demasiadas coincidencias.",
+        "next": "h03_note_end"
+      }
+    ]
+  },
+  {
+    "id": "harold_04",
+    "callerId": "harold_finch",
+    "shift": 8,
+    "moodOnAnswer": "worried",
+    "unlockCondition": { "stat": "empathy", "gte": 5 },
+    "notebookSummary": "Harold: Mermelada señaló la foto del operador anterior que encontró en el archivador. Foto de alguien que debería estar en este escritorio.",
+    "nodes": [
+      {
+        "id": "h04_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Buenas noches. Sé que es tarde para llamar. Pero Mermelada ha hecho algo que no sé cómo interpretar.",
+        "next": "h04_n2"
+      },
+      {
+        "id": "h04_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Estaba revisando unos papeles viejos que encontré en el fondo de un cajón. De cuando compramos el piso. Y Mermelada empezó a agitarse mucho.",
+        "next": "h04_n3"
+      },
+      {
+        "id": "h04_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Se fue directo a una foto que estaba entre los papeles. Una foto de una persona. No sé quién es. Y estuvo mirándola durante veinte minutos sin moverse.",
+        "next": "h04_choice1"
+      },
+      {
+        "id": "h04_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "h04_c_ask_photo", "text": "¿Cómo es la persona de la foto?",
+            "statEffect": { "curiosity": 3 },
+            "relEffect": { "harold_finch": 2 },
+            "flagSet": { "harold_photo_mystery": true },
+            "next": "h04_photo_branch"
+          },
+          {
+            "id": "h04_c_mundane", "text": "Los dragones jóvenes a veces fijan la mirada en objetos brillantes. ¿La foto tenía marco con cristal?",
+            "statEffect": { "efficiency": 1 },
+            "next": "h04_mundane_end"
+          }
+        ]
+      },
+      {
+        "id": "h04_photo_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Una persona joven, parece. Sentada en un escritorio con muchos teléfonos. Como... como un puesto de telefonista, ¿sabe?",
+        "next": "h04_photo2"
+      },
+      {
+        "id": "h04_photo2", "type": "dialogue", "speaker": "caller",
+        "text": "En el reverso hay escrito: 'Operador 7. Turno de noche. No preguntar.'",
+        "next": "h04_photo3"
+      },
+      {
+        "id": "h04_photo3", "type": "dialogue", "speaker": "system",
+        "text": "[Algo en la oficina cambia. El archivador del rincón está entreabierto. Juraría que antes estaba cerrado.]",
+        "next": "h04_choice2"
+      },
+      {
+        "id": "h04_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "h04_c_notebook", "text": "¿Puede enviarme esa foto? Quiero investigarlo.",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "operator_photo_known": true },
+            "relEffect": { "harold_finch": 2 },
+            "next": "h04_notebook_end"
+          },
+          {
+            "id": "h04_c_dismiss", "text": "Probablemente sea alguien del edificio anterior. No le dé más vueltas.",
+            "statEffect": { "efficiency": 1 },
+            "next": "h04_dismiss_end"
+          }
+        ]
+      },
+      {
+        "id": "h04_notebook_end", "type": "end",
+        "text": "Claro, se la escaneo mañana. ¿Sabe qué? Mermelada se ha calmado en cuanto he mencionado que se la iba a dar a usted. Qué raro. Buenas noches.",
+        "flagSet": { "operator_photo_known": true }
+      },
+      {
+        "id": "h04_dismiss_end", "type": "end",
+        "text": "Sí, seguramente tiene razón. Quizás la guardaré de todas formas. Buenas noches.",
+        "flagSet": {}
+      },
+      {
+        "id": "h04_mundane_end", "type": "end",
+        "text": "Pues sí, tenía marco con cristal. Mira tú. Tampoco le doy más vueltas entonces. Buenas noches.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "harold_05",
+    "callerId": "harold_finch",
+    "shift": 13,
+    "moodOnAnswer": "urgent",
+    "unlockCondition": { "flagSet": "harold_trusted" },
+    "notebookSummary": "Harold: Mermelada no para de señalar el teléfono. Dice que lleva tres días así. 'Como si supiera que usted necesita ayuda.'",
+    "nodes": [
+      {
+        "id": "h05_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Harold. Perdone que llame tan tarde, pero Mermelada lleva tres días sin dormir.",
+        "next": "h05_n2"
+      },
+      {
+        "id": "h05_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Solo señala el teléfono. Cada vez que lo miro, me señala el teléfono. Y luego me mira a mí. Como diciendo: llama.",
+        "next": "h05_n3"
+      },
+      {
+        "id": "h05_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Sé que suena una tontería, pero con todo lo que ha pasado... ¿Está usted bien?",
+        "next": "h05_choice1"
+      },
+      {
+        "id": "h05_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "h05_c_honest", "text": "La verdad es que han pasado cosas extrañas aquí últimamente.",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "relEffect": { "harold_finch": 5 },
+            "flagSet": { "harold_confided_in": true },
+            "next": "h05_honest_branch"
+          },
+          {
+            "id": "h05_c_professional", "text": "Estoy bien, gracias por preguntar. ¿En qué puedo ayudarle?",
+            "statEffect": { "efficiency": 1 },
+            "relEffect": { "harold_finch": 1 },
+            "next": "h05_professional_end"
+          }
+        ]
+      },
+      {
+        "id": "h05_honest_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Ya me parecía a mí. Mermelada no falla. Mire, no sé qué está pasando ahí donde trabaja, pero...",
+        "next": "h05_honest2"
+      },
+      {
+        "id": "h05_honest2", "type": "dialogue", "speaker": "caller",
+        "text": "Si alguna vez necesita ayuda, llámeme. Tengo un dragón que ve cosas que no deberían verse. Y yo llevo veinte años escuchándole.",
+        "next": "h05_end_good"
+      },
+      {
+        "id": "h05_end_good", "type": "end",
+        "text": "Cuídese. Y si Mermelada vuelve a señalar el teléfono, le llamo enseguida. Buenas noches.",
+        "flagSet": { "harold_ally": true, "callers_helped_count_increment": 1 }
+      },
+      {
+        "id": "h05_professional_end", "type": "end",
+        "text": "Claro, claro. Es que a veces me preocupo. Buenas noches.",
+        "flagSet": {}
+      }
+    ]
+  }
+]

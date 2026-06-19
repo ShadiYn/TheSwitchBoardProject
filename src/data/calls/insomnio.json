@@ -1,0 +1,205 @@
+[
+  {
+    "id": "insomnio_01",
+    "callerId": "insomnio",
+    "shift": 8,
+    "moodOnAnswer": "slow_heavy",
+    "notebookSummary": "El Insomnio llamó a las 3:33. Sabe los nombres de todos los operadores anteriores. Lleva aquí desde antes que el Switchboard.",
+    "nodes": [
+      {
+        "id": "ins01_n1", "type": "dialogue", "speaker": "system",
+        "text": "[3:33 de la madrugada. El teléfono suena diferente. Más lento. Como si el sonido tuviera peso.]",
+        "next": "ins01_n2"
+      },
+      {
+        "id": "ins01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "...ya estás despierto.",
+        "next": "ins01_n3"
+      },
+      {
+        "id": "ins01_n3", "type": "dialogue", "speaker": "caller",
+        "text": "Siempre están despiertos a esta hora. Todos los operadores. Sin excepción.",
+        "next": "ins01_choice1"
+      },
+      {
+        "id": "ins01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "ins01_c_who", "text": "¿Quién eres?",
+            "statEffect": { "curiosity": 2 },
+            "next": "ins01_who_branch"
+          },
+          {
+            "id": "ins01_c_listen", "text": "[No decir nada. Escuchar.]",
+            "statEffect": { "curiosity": 3, "empathy": 1 },
+            "flagSet": { "insomnio_first_contact": true },
+            "next": "ins01_listen_branch"
+          },
+          {
+            "id": "ins01_c_hang", "text": "[Colgar.]",
+            "statEffect": { "efficiency": 1 },
+            "next": "ins01_hang_end"
+          }
+        ]
+      },
+      {
+        "id": "ins01_who_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Soy el espacio entre el sueño y el despertar. Llevo contigo desde que entraste aquí. Antes que tú, con los otros.",
+        "next": "ins01_who2"
+      },
+      {
+        "id": "ins01_who2", "type": "dialogue", "speaker": "caller",
+        "text": "¿Quieres saber sus nombres? Los operadores anteriores. Los recuerdo a todos.",
+        "next": "ins01_choice2"
+      },
+      {
+        "id": "ins01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "ins01_c_names_yes", "text": "Sí. Dime sus nombres.",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "insomnio_first_contact": true, "operator_names_heard": true },
+            "next": "ins01_names_branch"
+          },
+          {
+            "id": "ins01_c_names_no", "text": "No. No quiero saber sus nombres.",
+            "statEffect": { "efficiency": 1 },
+            "flagSet": { "insomnio_first_contact": true },
+            "next": "ins01_no_end"
+          }
+        ]
+      },
+      {
+        "id": "ins01_names_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Ernesto. Carmen. Daniel. Sofía. Marcos. Valentina. Javier. Y ahora tú.",
+        "next": "ins01_names2"
+      },
+      {
+        "id": "ins01_names2", "type": "dialogue", "speaker": "caller",
+        "text": "Todos llegaron pensando que era un trabajo normal. Todos se fueron... de formas distintas.",
+        "next": "ins01_names_end"
+      },
+      {
+        "id": "ins01_names_end", "type": "end",
+        "text": "Intenta dormir. Aunque los dos sabemos que no puedes. [La línea se corta. Son las 3:34.]",
+        "flagSet": { "insomnio_first_contact": true, "operator_names_heard": true, "seven_operators_named": true }
+      },
+      {
+        "id": "ins01_no_end", "type": "end",
+        "text": "Bien. A veces es mejor no saber. Pero ya sabes que existen. Eso es suficiente por ahora. [La línea se corta.]",
+        "flagSet": { "insomnio_first_contact": true }
+      },
+      {
+        "id": "ins01_listen_branch", "type": "dialogue", "speaker": "caller",
+        "text": "...",
+        "next": "ins01_listen2"
+      },
+      {
+        "id": "ins01_listen2", "type": "dialogue", "speaker": "caller",
+        "text": "Bien. Escuchar es lo más valioso que puedes hacer aquí. Más que hablar. Más que actuar.",
+        "next": "ins01_listen3"
+      },
+      {
+        "id": "ins01_listen3", "type": "dialogue", "speaker": "caller",
+        "text": "Los operadores que salieron de aquí fueron los que escucharon primero y actuaron después. Los que actuaron primero... se quedaron.",
+        "next": "ins01_names_end"
+      },
+      {
+        "id": "ins01_hang_end", "type": "end",
+        "text": "[La línea se corta. Pero el peso de la llamada queda en el aire varios minutos.]",
+        "flagSet": { "insomnio_first_contact": true }
+      }
+    ]
+  },
+  {
+    "id": "insomnio_02",
+    "callerId": "insomnio",
+    "shift": 12,
+    "moodOnAnswer": "slow_urgent",
+    "unlockCondition": { "flagSet": "insomnio_first_contact" },
+    "notebookSummary": "El Insomnio llama de nuevo. Esta vez tiene algo concreto: la lista de lo que cada operador anterior hizo mal.",
+    "nodes": [
+      {
+        "id": "ins02_n1", "type": "dialogue", "speaker": "system",
+        "text": "[3:33 otra vez. Exactamente.]",
+        "next": "ins02_n2"
+      },
+      {
+        "id": "ins02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Recuerdas los nombres. Bien. Esta vez te digo qué les pasó a cada uno.",
+        "next": "ins02_choice1"
+      },
+      {
+        "id": "ins02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "ins02_c_listen", "text": "Escucho.",
+            "statEffect": { "curiosity": 3, "empathy": 1 },
+            "next": "ins02_listen_branch"
+          },
+          {
+            "id": "ins02_c_no", "text": "No quiero saber.",
+            "statEffect": { "efficiency": 1 },
+            "next": "ins02_no_end"
+          }
+        ]
+      },
+      {
+        "id": "ins02_listen_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Ernesto construyó el Switchboard. Creyó que podía controlarlo. No pudo. Lleva 70 años llamando.",
+        "next": "ins02_l2"
+      },
+      {
+        "id": "ins02_l2", "type": "dialogue", "speaker": "caller",
+        "text": "Carmen se aisló. Dejó de hablar con los callers. De ayudarles. El Switchboard la atrapó en tres semanas.",
+        "next": "ins02_l3"
+      },
+      {
+        "id": "ins02_l3", "type": "dialogue", "speaker": "caller",
+        "text": "Daniel intentó destruir el panel de control. El Switchboard le convirtió en parte del propio panel.",
+        "next": "ins02_l4"
+      },
+      {
+        "id": "ins02_l4", "type": "dialogue", "speaker": "caller",
+        "text": "Sofía casi lo consiguió. Llegó al turno veintinueve. La llamada del turno treinta llegó antes de lo esperado.",
+        "next": "ins02_choice2"
+      },
+      {
+        "id": "ins02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "ins02_c_sofía", "text": "¿Qué pasó con Sofía exactamente?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "sofia_story_known": true },
+            "next": "ins02_sofia_branch"
+          },
+          {
+            "id": "ins02_c_me", "text": "¿Qué debo hacer yo para no acabar así?",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "next": "ins02_me_branch"
+          }
+        ]
+      },
+      {
+        "id": "ins02_sofia_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Sofía tenía aliados. Más que nadie. Pero el Switchboard adelantó el ciclo. La sorprendió sola en el turno veintinueve.",
+        "next": "ins02_sofia2"
+      },
+      {
+        "id": "ins02_sofia2", "type": "end",
+        "text": "Ahora te llama a veces. Con el número de Paranormal Affairs. No está atrapada del todo. Pero tampoco libre. Cuídate. [La línea se corta.]",
+        "flagSet": { "sofia_story_known": true, "insomnio_full_history": true }
+      },
+      {
+        "id": "ins02_me_branch", "type": "end",
+        "text": "No lo que ellos hicieron. Carmen aisló. Tú conecta. Daniel destruyó. Tú construye. Sofía llegó sola al final. Tú no llegues solo. [La línea se corta. Son las 3:34.]",
+        "flagSet": { "insomnio_full_history": true, "not_alone_is_key": true }
+      },
+      {
+        "id": "ins02_no_end", "type": "end",
+        "text": "También es válido. No todos necesitan saber la historia para no repetirla. Algunos lo intuyen. Buenas noches. [La línea se corta.]",
+        "flagSet": {}
+      }
+    ]
+  }
+]

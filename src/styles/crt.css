@@ -1,0 +1,28 @@
+.crt-on {
+  position: relative;
+}
+
+.crt-on::before {
+  content: '';
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes flicker {
+    0%,100% { opacity: 1; }
+    92%      { opacity: 1; }
+    93%      { opacity: 0.94; }
+    94%      { opacity: 1; }
+  }
+  .crt-on { animation: flicker 8s infinite; }
+}

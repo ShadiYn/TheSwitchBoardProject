@@ -1,0 +1,33 @@
+[
+  { "id": "foxglove_01", "callerId": "foxglove", "shift": 7, "moodOnAnswer": "controlled_angry",
+    "notebookSummary": "Srta. Foxglove. Zorra, analista de riesgos. Sus compañeros no la toman en serio. Quiere denunciar.",
+    "nodes": [
+      { "id": "f01_n1", "type": "dialogue", "speaker": "caller", "text": "Buenas noches. Me llamo Foxglove. Soy analista de riesgos en el Banco Regional del Norte. Necesito asesoramiento.", "next": "f01_n2" },
+      { "id": "f01_n2", "type": "dialogue", "speaker": "caller", "text": "Mis compañeros llevan dos años ignorando mis análisis. El motivo, según ellos: 'dificultad para leer el lenguaje corporal de una zorra'.", "next": "f01_choice1" },
+      { "id": "f01_choice1", "type": "choice",
+        "choices": [
+          { "id": "f01_c_hr", "text": "Eso es discriminación. Relaciones Humanas puede abrirle un expediente.", "statEffect": { "efficiency": 2 }, "relEffect": { "foxglove": 2 }, "next": "f01_hr_end" },
+          { "id": "f01_c_ask_case", "text": "¿Cuánta documentación tiene del patrón discriminatorio?", "statEffect": { "efficiency": 1, "curiosity": 2 }, "relEffect": { "foxglove": 4 }, "flagSet": { "foxglove_case_open": true }, "next": "f01_case_branch" }
+        ]
+      },
+      { "id": "f01_case_branch", "type": "dialogue", "speaker": "caller", "text": "Dieciocho meses de correos electrónicos. Actas de reuniones. Tres grabaciones de audio. Y algo más que encontré revisando los archivos del banco.", "next": "f01_c2" },
+      { "id": "f01_c2", "type": "end", "text": "Registros financieros hacia una dirección que aparece en varios casos de anomalías. Una centralita. Lo investigo. Buenas noches.", "flagSet": { "foxglove_case_open": true, "foxglove_found_switchboard_funds": true } },
+      { "id": "f01_hr_end", "type": "end", "text": "Lo haré. Gracias. Aunque espero que Relaciones Humanas sea más competente que mi departamento. Buenas noches.", "flagSet": { "foxglove_case_open": true } }
+    ]
+  },
+  { "id": "foxglove_02", "callerId": "foxglove", "shift": 11, "moodOnAnswer": "urgent",
+    "unlockCondition": { "flagSet": "foxglove_case_open" },
+    "notebookSummary": "Foxglove: los fondos que encontró van al Switchboard. El Switchboard tiene financiación activa desde 1948.",
+    "nodes": [
+      { "id": "f02_n1", "type": "dialogue", "speaker": "caller", "text": "Foxglove. Los registros financieros apuntan a su centralita. El Switchboard tiene financiación activa desde 1948.", "next": "f02_choice1" },
+      { "id": "f02_choice1", "type": "choice",
+        "choices": [
+          { "id": "f02_c_who", "text": "¿Quién financia el Switchboard?", "statEffect": { "curiosity": 4 }, "next": "f02_who_branch" },
+          { "id": "f02_c_dangerous", "text": "Foxglove, ¿sabe que investigar esto puede ser peligroso?", "statEffect": { "empathy": 2 }, "next": "f02_danger_end" }
+        ]
+      },
+      { "id": "f02_who_branch", "type": "end", "text": "No lo sé todavía. Los fondos vienen de una entidad que no existe en ningún registro público. Solo existe en los registros del Switchboard. El Switchboard se financia a sí mismo. No sé cómo es eso posible. Buenas noches.", "flagSet": { "switchboard_self_funded": true } },
+      { "id": "f02_danger_end", "type": "end", "text": "Soy una zorra analista de riesgos. Evalúo el peligro constantemente. Este peligro vale la pena. Buenas noches.", "flagSet": { "foxglove_ally": true } }
+    ]
+  }
+]

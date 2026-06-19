@@ -1,0 +1,82 @@
+[
+  {
+    "id": "tomas_01",
+    "callerId": "tomas",
+    "shift": 4,
+    "moodOnAnswer": "frightened_whisper",
+    "notebookSummary": "Tomás, 8 años. Llama de noche desde el teléfono del salón. Su monstruo del armario se llama Bubi y es su mejor amigo. Sus padres quieren llamar a Paranormal Affairs.",
+    "nodes": [
+      { "id": "t01_n1", "type": "dialogue", "speaker": "caller", "text": "[susurros] Hola. ¿Es el Switchboard? Necesito ayuda. Es muy urgente.", "next": "t01_n2" },
+      { "id": "t01_n2", "type": "dialogue", "speaker": "caller", "text": "Me llamo Tomás. Tengo ocho años. Mis padres están durmiendo y he encontrado este número en el frigorífico.", "next": "t01_n3" },
+      { "id": "t01_n3", "type": "dialogue", "speaker": "caller", "text": "Mi monstruo del armario se llama Bubi. Es mi mejor amigo. Pero mis padres lo oyeron anoche y quieren llamar a Asuntos Paranormales para que se lo lleven.", "next": "t01_choice1" },
+      {
+        "id": "t01_choice1", "type": "choice",
+        "choices": [
+          { "id": "t01_c_listen", "text": "Tomás, respira. Cuéntame sobre Bubi.", "statEffect": { "empathy": 3 }, "relEffect": { "tomas": 5 }, "next": "t01_listen_branch" },
+          { "id": "t01_c_paranormal", "text": "Los monstruos del armario son competencia de Asuntos Paranormales, Tomás.", "statEffect": { "efficiency": 1 }, "relEffect": { "tomas": -3 }, "next": "t01_paranormal_end" },
+          { "id": "t01_c_reassure", "text": "No te voy a enviar a nadie esta noche. Primero quiero escuchar.", "statEffect": { "empathy": 2 }, "relEffect": { "tomas": 4 }, "next": "t01_listen_branch" }
+        ]
+      },
+      { "id": "t01_listen_branch", "type": "dialogue", "speaker": "caller", "text": "Bubi lleva dos años en mi armario. Al principio sí me asustaba, pero luego resultó que solo quería compañía.", "next": "t01_l2" },
+      { "id": "t01_l2", "type": "dialogue", "speaker": "caller", "text": "Me enseñó a jugar al ajedrez. Y cuando tengo pesadillas se queda fuera del armario hasta que me duermo.", "next": "t01_l3" },
+      { "id": "t01_l3", "type": "dialogue", "speaker": "caller", "text": "Si se lo llevan... [pausa] ...es mi mejor amigo.", "next": "t01_choice2" },
+      {
+        "id": "t01_choice2", "type": "choice",
+        "choices": [
+          { "id": "t01_c_protect", "text": "Voy a ver qué puedo hacer para que Bubi pueda quedarse.", "statEffect": { "empathy": 3 }, "relEffect": { "tomas": 5 }, "flagSet": { "bubi_protected": true }, "next": "t01_protect_end" },
+          { "id": "t01_c_parents", "text": "¿Crees que tus padres entenderían si se lo explicaras tú mismo?", "statEffect": { "empathy": 2 }, "next": "t01_parents_end" }
+        ]
+      },
+      { "id": "t01_protect_end", "type": "end", "text": "[muy bajito] Gracias. Bubi está escuchando. Dice que usted es de fiar. Y Bubi nunca se equivoca con la gente. Buenas noches.", "flagSet": { "bubi_protected": true, "tomas_bonded": true } },
+      { "id": "t01_parents_end", "type": "end", "text": "Lo intenté antes. No me creyeron. Pero gracias por escuchar. Bubi dice que usted tiene 'buena vibra'. Buenas noches.", "flagSet": { "tomas_bonded": true } },
+      { "id": "t01_paranormal_end", "type": "end", "text": "[silencio] ...De acuerdo. Gracias. [La línea se corta. Se nota que está llorando.]", "flagSet": {} }
+    ]
+  },
+  {
+    "id": "tomas_02",
+    "callerId": "tomas",
+    "shift": 8,
+    "moodOnAnswer": "scared_urgent",
+    "notebookSummary": "Tomás: sus padres llamaron a Paranormal Affairs. Vienen mañana. Necesita ayuda.",
+    "nodes": [
+      { "id": "t02_n1", "type": "dialogue", "speaker": "caller", "text": "[llorando] Mis padres llamaron. Vienen de Paranormal Affairs mañana por la mañana.", "next": "t02_n2" },
+      { "id": "t02_n2", "type": "dialogue", "speaker": "caller", "text": "Bubi está muy asustado. Se ha hecho muy pequeñito en el fondo del armario. Los monstruos cuando tienen miedo se hacen pequeños, ¿sabía usted eso?", "next": "t02_choice1" },
+      {
+        "id": "t02_choice1", "type": "choice",
+        "choices": [
+          { "id": "t02_c_intervene", "text": "Puedo contactar con Paranormal Affairs y explicar la situación antes de que lleguen.", "statEffect": { "empathy": 3, "efficiency": 1 }, "relEffect": { "tomas": 5 }, "condition": { "flagSet": "bubi_protected" }, "flagSet": { "paranormal_notified_bubi_safe": true }, "next": "t02_intervene_end" },
+          { "id": "t02_c_bubi_hide", "text": "¿Puede Bubi esconderse en otro lugar hasta que la visita pase?", "statEffect": { "empathy": 2, "chaos": 1 }, "next": "t02_hide_branch" },
+          { "id": "t02_c_helpless", "text": "Tomás, no tengo autoridad para...", "statEffect": { "efficiency": 1 }, "relEffect": { "tomas": -3 }, "next": "t02_helpless_end" }
+        ]
+      },
+      { "id": "t02_intervene_end", "type": "end", "text": "[pausa larga] ...¿En serio lo va a hacer? [pausa] Bubi ha salido del fondo del armario. Creo que lo escuchó. Gracias. Gracias de verdad. Buenas noches.", "flagSet": { "bubi_safe": true, "tomas_deeply_bonded": true } },
+      { "id": "t02_hide_branch", "type": "dialogue", "speaker": "caller", "text": "Bubi dice que puede ir al sótano del edificio una noche. Pero dice que necesita que alguien sepa que está ahí. Que los monstruos solos en sótanos se ponen tristes.", "next": "t02_hide_end" },
+      { "id": "t02_hide_end", "type": "end", "text": "Vale. Le diré al portero que hay un amigo en el sótano. Aunque no sé cómo voy a explicarlo. Gracias. Buenas noches.", "flagSet": { "bubi_safe": true } },
+      { "id": "t02_helpless_end", "type": "end", "text": "[silencio] ...Entendido. Buenas noches.", "flagSet": {} }
+    ]
+  },
+  {
+    "id": "tomas_03",
+    "callerId": "tomas",
+    "shift": 13,
+    "moodOnAnswer": "calm_mysterious",
+    "unlockCondition": { "flagSet": "bubi_safe" },
+    "notebookSummary": "Tomás: Bubi tiene un mensaje. Sabe lo del Switchboard. Dice que los monstruos del armario siempre han sabido del Switchboard.",
+    "nodes": [
+      { "id": "t03_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Tomás. Esta vez no llamo por una emergencia. Bubi quiere decirle algo.", "next": "t03_n2" },
+      { "id": "t03_n2", "type": "dialogue", "speaker": "caller", "text": "Bubi dice... [pausa, como escuchando] ...dice que los monstruos del armario siempre han existido cerca del Switchboard.", "next": "t03_n3" },
+      { "id": "t03_n3", "type": "dialogue", "speaker": "caller", "text": "Los armarios son puertas. No a donde viven los monstruos. A otras líneas. Bubi vino de una línea donde el Switchboard no atrapó a nadie.", "next": "t03_choice1" },
+      {
+        "id": "t03_choice1", "type": "choice",
+        "choices": [
+          { "id": "t03_c_how", "text": "¿Cómo se rompe el atrapamiento en esa línea?", "statEffect": { "curiosity": 3 }, "relEffect": { "tomas": 3 }, "flagSet": { "bubi_message_received": true }, "next": "t03_how_branch" },
+          { "id": "t03_c_bubi_direct", "text": "¿Puede Bubi hablarme directamente?", "statEffect": { "curiosity": 2 }, "next": "t03_direct_branch" }
+        ]
+      },
+      { "id": "t03_how_branch", "type": "dialogue", "speaker": "caller", "text": "Bubi dice que en su línea, el operador no estaba solo. Había personas que sabían lo que era el Switchboard y elegían ayudar.", "next": "t03_how2" },
+      { "id": "t03_how2", "type": "end", "text": "Dice que usted ya tiene eso. Que solo tiene que reconocerlo. [Tomás en voz normal] Bubi se acaba de meter en el armario. Creo que ha terminado. Buenas noches.", "flagSet": { "bubi_message_received": true, "not_alone_known": true } },
+      { "id": "t03_direct_branch", "type": "dialogue", "speaker": "caller", "text": "[voz diferente, más grave, muy suave] ...Operador. No estás atrapado si sabes que puedes irte. El Switchboard te engaña haciéndote creer que no puedes.", "next": "t03_direct2" },
+      { "id": "t03_direct2", "type": "end", "text": "[voz de Tomás de nuevo] Oh. Bubi nunca había hablado por teléfono antes. Dice que espera haberte ayudado. Buenas noches.", "flagSet": { "bubi_spoke_to_operator": true, "not_alone_known": true } }
+    ]
+  }
+]

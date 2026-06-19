@@ -1,0 +1,247 @@
+[
+  {
+    "id": "unknown_01",
+    "callerId": "unknown_caller",
+    "shift": 3,
+    "moodOnAnswer": "eerie",
+    "notebookSummary": "Número desconocido. Preguntó cuántos días llevo aquí. Nada más.",
+    "nodes": [
+      {
+        "id": "uk01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "...",
+        "next": "uk01_n2"
+      },
+      {
+        "id": "uk01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "¿Sigues ahí?",
+        "next": "uk01_n3"
+      },
+      {
+        "id": "uk01_n3", "type": "dialogue", "speaker": "caller",
+        "text": "¿Cuántos días llevas ya?",
+        "next": "uk01_choice1"
+      },
+      {
+        "id": "uk01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "uk01_c_ask", "text": "¿Con quién hablo?",
+            "statEffect": { "curiosity": 2 },
+            "next": "uk01_ask_end"
+          },
+          {
+            "id": "uk01_c_answer", "text": "Tres noches. ¿Por qué?",
+            "statEffect": { "curiosity": 1, "empathy": 1 },
+            "flagSet": { "told_days_to_unknown": true },
+            "next": "uk01_answer_branch"
+          },
+          {
+            "id": "uk01_c_hang", "text": "[Colgar.]",
+            "statEffect": { "efficiency": 1 },
+            "next": "uk01_hang_end"
+          },
+          {
+            "id": "uk01_c_silence", "text": "[No decir nada. Escuchar.]",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "heard_unknown_caller": true },
+            "next": "uk01_silence_end"
+          }
+        ]
+      },
+      {
+        "id": "uk01_ask_end", "type": "end",
+        "text": "...",
+        "flagSet": { "heard_unknown_caller": true }
+      },
+      {
+        "id": "uk01_answer_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Tres. Eso es poco tiempo todavía.",
+        "next": "uk01_answer2"
+      },
+      {
+        "id": "uk01_answer2", "type": "dialogue", "speaker": "caller",
+        "text": "No te acostumbres demasiado.",
+        "next": "uk01_answer_end"
+      },
+      {
+        "id": "uk01_answer_end", "type": "end",
+        "text": "[La línea se corta.]",
+        "flagSet": { "heard_unknown_caller": true }
+      },
+      {
+        "id": "uk01_hang_end", "type": "end",
+        "text": "[Silencio. La pantalla del teléfono parpadea una vez.]",
+        "flagSet": { "heard_unknown_caller": true }
+      },
+      {
+        "id": "uk01_silence_end", "type": "end",
+        "text": "Eso. Así. [La línea se corta. En tu cuaderno aparece escrito, con tu propia letra: 'Alguien sabe cuánto tiempo llevo aquí.']",
+        "flagSet": { "heard_unknown_caller": true, "notebook_anomaly_1": true }
+      }
+    ]
+  },
+  {
+    "id": "unknown_02",
+    "callerId": "unknown_caller",
+    "shift": 7,
+    "moodOnAnswer": "eerie",
+    "unlockCondition": { "flagSet": "heard_unknown_caller" },
+    "notebookSummary": "Número desconocido de nuevo. Esta vez habló más. Mencionó a los operadores anteriores. No sabe que ya encontré los archivos.",
+    "nodes": [
+      {
+        "id": "uk02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Eres tú otra vez.",
+        "next": "uk02_n2"
+      },
+      {
+        "id": "uk02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Iba a decirte que mires el archivador. Pero ya lo has visto, ¿verdad?",
+        "next": "uk02_choice1"
+      },
+      {
+        "id": "uk02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "uk02_c_yes_files", "text": "Sí. He visto los archivos. Siete operadores anteriores.",
+            "condition": { "flagSet": "found_operator_files" },
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "confronted_unknown": true },
+            "next": "uk02_yes_branch"
+          },
+          {
+            "id": "uk02_c_no_files", "text": "No sé de qué archivador hablas.",
+            "statEffect": { "efficiency": 1 },
+            "next": "uk02_no_branch"
+          },
+          {
+            "id": "uk02_c_who", "text": "¿Cómo sabes lo que he visto y lo que no?",
+            "statEffect": { "curiosity": 2 },
+            "next": "uk02_who_branch"
+          }
+        ]
+      },
+      {
+        "id": "uk02_yes_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Bien. Ya sabes que no eres el primero. Y probablemente tampoco el último.",
+        "next": "uk02_yes2"
+      },
+      {
+        "id": "uk02_yes2", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard necesita un operador. Siempre lo ha necesitado. La pregunta es qué pasa cuando el operador decide que ya no quiere serlo.",
+        "next": "uk02_choice2"
+      },
+      {
+        "id": "uk02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "uk02_c_escape", "text": "¿Se puede salir de aquí?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "asked_about_escape": true },
+            "next": "uk02_escape_branch"
+          },
+          {
+            "id": "uk02_c_operator", "text": "¿Tú eres uno de los operadores anteriores?",
+            "statEffect": { "curiosity": 2 },
+            "next": "uk02_operator_branch"
+          }
+        ]
+      },
+      {
+        "id": "uk02_escape_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Sí. Pero no como crees. No hay puerta trasera. Hay algo peor y algo mejor.",
+        "next": "uk02_escape2"
+      },
+      {
+        "id": "uk02_escape2", "type": "end",
+        "text": "Te lo explicaré cuando llegue el momento. Falta poco. [La línea se corta.]",
+        "flagSet": { "escape_possible_known": true }
+      },
+      {
+        "id": "uk02_operator_branch", "type": "end",
+        "text": "Operador número cinco. Dos años, tres meses, cuatro días. Luego me convertí en caller. Tú también puedes. O no tienes que hacerlo. [La línea se corta.]",
+        "flagSet": { "unknown_is_operator5": true }
+      },
+      {
+        "id": "uk02_no_branch", "type": "end",
+        "text": "Lo encontrarás. El cajón de abajo del archivador. Cuando lo veas, recuerda: no eres el primero. [La línea se corta.]",
+        "flagSet": {}
+      },
+      {
+        "id": "uk02_who_branch", "type": "end",
+        "text": "Porque yo también estuve donde estás tú. Buenas noches. [La línea se corta.]",
+        "flagSet": { "unknown_was_operator": true }
+      }
+    ]
+  },
+  {
+    "id": "unknown_03",
+    "callerId": "unknown_caller",
+    "shift": 14,
+    "moodOnAnswer": "urgent",
+    "unlockCondition": { "flagSet": "found_operator_files" },
+    "notebookSummary": "Número desconocido, tercera vez. Advierte sobre la llamada del turno 17. 'No cuelgues.'",
+    "nodes": [
+      {
+        "id": "uk03_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Escucha. Tengo poco tiempo y hay interferencias en esta línea.",
+        "next": "uk03_n2"
+      },
+      {
+        "id": "uk03_n2", "type": "dialogue", "speaker": "caller",
+        "text": "En tres turnos vas a recibir una llamada. El identificador va a decir tu nombre.",
+        "next": "uk03_n3"
+      },
+      {
+        "id": "uk03_n3", "type": "dialogue", "speaker": "caller",
+        "text": "No cuelgues. Sin importar lo que escuches. No cuelgues.",
+        "next": "uk03_choice1"
+      },
+      {
+        "id": "uk03_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "uk03_c_promise", "text": "De acuerdo. No colgaré.",
+            "statEffect": { "curiosity": 2 },
+            "flagSet": { "promised_not_to_hang": true },
+            "next": "uk03_promise_end"
+          },
+          {
+            "id": "uk03_c_explain", "text": "Necesito que me expliques qué está pasando.",
+            "statEffect": { "curiosity": 3 },
+            "next": "uk03_explain_branch"
+          },
+          {
+            "id": "uk03_c_suspicious", "text": "¿Por qué debería fiarme de ti?",
+            "statEffect": { "chaos": 1 },
+            "next": "uk03_suspicious_branch"
+          }
+        ]
+      },
+      {
+        "id": "uk03_promise_end", "type": "end",
+        "text": "Bien. Y una cosa más: cuando escuches lo que te digan, recuerda que ya elegiste una vez estar aquí. Puedes elegir otra vez. [Línea cortada.]",
+        "flagSet": { "promised_not_to_hang": true, "pre_self_call_warning": true }
+      },
+      {
+        "id": "uk03_explain_branch", "type": "dialogue", "speaker": "caller",
+        "text": "El Switchboard atrapa operadores. Los usa. Cuando ya no los necesita, los convierte en callers. En bucle.",
+        "next": "uk03_explain2"
+      },
+      {
+        "id": "uk03_explain2", "type": "dialogue", "speaker": "caller",
+        "text": "Pero hay una forma de romperlo. Solo una. Y empieza con esa llamada del turno diecisiete.",
+        "next": "uk03_promise_end"
+      },
+      {
+        "id": "uk03_suspicious_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Porque yo soy el operador número cinco. Y llevo siete años intentando avisarte. A ti. Al que lleva tu nombre.",
+        "next": "uk03_suspicious2"
+      },
+      {
+        "id": "uk03_suspicious2", "type": "end",
+        "text": "No te pido que confíes en mí. Solo que no cuelgues. [Línea cortada.]",
+        "flagSet": { "pre_self_call_warning": true, "unknown_is_operator5": true }
+      }
+    ]
+  }
+]

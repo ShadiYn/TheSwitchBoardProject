@@ -1,0 +1,33 @@
+[
+  { "id": "yuki_01", "callerId": "yuki", "shift": 4, "moodOnAnswer": "fragmented",
+    "notebookSummary": "Yuki Tanaka. Espíritu de cerezo, 400 años. Llama en invierno porque no está segura de existir.",
+    "nodes": [
+      { "id": "y01_n1", "type": "dialogue", "speaker": "caller", "text": "...¿Hay alguien? En invierno no siempre sé si estoy.", "next": "y01_n2" },
+      { "id": "y01_n2", "type": "dialogue", "speaker": "caller", "text": "Soy Yuki. El espíritu del cerezo en la plaza de Chamberi. En primavera existo sin duda. En invierno... menos.", "next": "y01_choice1" },
+      { "id": "y01_choice1", "type": "choice",
+        "choices": [
+          { "id": "y01_c_here", "text": "Estás aquí, Yuki. Te escucho.", "statEffect": { "empathy": 3 }, "relEffect": { "yuki": 5 }, "next": "y01_here_branch" },
+          { "id": "y01_c_ask", "text": "¿Qué significa 'no saber si estás'?", "statEffect": { "curiosity": 2 }, "next": "y01_ask_branch" }
+        ]
+      },
+      { "id": "y01_here_branch", "type": "dialogue", "speaker": "caller", "text": "...Gracias. Hace mucho que nadie me escuchaba en invierno. Vi el Switchboard construirse, ¿sabe? Desde mi árbol.", "next": "y01_sw_hint" },
+      { "id": "y01_sw_hint", "type": "end", "text": "Era un lugar bonito entonces. Lleno de luz. Luego algo cambió. Ya no hay luz desde fuera. Buenas noches. O buenos inviernos. No sé cuál aplica.", "flagSet": { "yuki_saw_switchboard": true } },
+      { "id": "y01_ask_branch", "type": "end", "text": "Es como ser música que nadie toca. Existes en potencia, no en acto. Gracias por preguntar. Buenas noches.", "flagSet": {} }
+    ]
+  },
+  { "id": "yuki_02", "callerId": "yuki", "shift": 9, "moodOnAnswer": "clear",
+    "notebookSummary": "Yuki: es primavera. Está plenamente presente. Y recuerda el día que la luz del Switchboard se apagó.",
+    "nodes": [
+      { "id": "y02_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Yuki. Es primavera. Estoy completa. Llamo porque hay algo que solo puedo decir cuando estoy completa.", "next": "y02_n2" },
+      { "id": "y02_n2", "type": "dialogue", "speaker": "caller", "text": "Recuerdo el día que la luz del Switchboard se apagó. Fue en 1952. El operador de entonces desapareció de golpe.", "next": "y02_choice1" },
+      { "id": "y02_choice1", "type": "choice",
+        "choices": [
+          { "id": "y02_c_1952", "text": "¿Qué pasó exactamente en 1952?", "statEffect": { "curiosity": 4 }, "flagSet": { "year_1952_known": true }, "next": "y02_year_branch" },
+          { "id": "y02_c_light", "text": "¿La luz volvió después?", "statEffect": { "curiosity": 2 }, "next": "y02_light_branch" }
+        ]
+      },
+      { "id": "y02_year_branch", "type": "end", "text": "El operador aprendió demasiado demasiado pronto. El Switchboard reinició. Al día siguiente había un operador nuevo. Y el anterior empezó a llamar. Lleva 70 años llamando. Buenas noches.", "flagSet": { "year_1952_known": true, "cycle_1952_confirmed": true } },
+      { "id": "y02_light_branch", "type": "end", "text": "Volvió. Siempre vuelve. Pero cada vez que vuelve, hay alguien nuevo adentro. Y el anterior queda afuera. Cuídese, operador. Buenas noches.", "flagSet": {} }
+    ]
+  }
+]

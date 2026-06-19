@@ -1,0 +1,170 @@
+.screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at center, var(--bg-2) 0%, var(--bg-0) 100%);
+  padding: 24px;
+}
+
+.card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-hi);
+  letter-spacing: -0.01em;
+}
+
+.tagline {
+  font-size: 13px;
+  color: var(--text-md);
+  line-height: 1.7;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btnPrimary {
+  padding: 13px 0;
+  background: var(--amber-lo);
+  border: 0.5px solid var(--amber-dim);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--amber);
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.btnPrimary:hover { background: rgba(212,144,10,0.22); border-color: var(--amber); }
+
+.btnSecondary {
+  padding: 13px 0;
+  background: var(--bg-3);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-md);
+  font-size: 14px;
+  color: var(--text-md);
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.btnSecondary:hover { background: var(--bg-4); color: var(--text-hi); }
+
+.footer {
+  margin-top: 12px;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: var(--font-mono);
+}
+
+/* ── Slots ───────────────────────────────────── */
+.backRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.backBtn {
+  font-size: 12px;
+  color: var(--text-lo);
+}
+
+.backBtn:hover { color: var(--text-hi); }
+
+.sectionTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-md);
+}
+
+.slotList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.slotRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.slotBtn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px 16px;
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-lo);
+  border-radius: var(--r-md);
+  text-align: left;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.slotBtn:hover:not(:disabled) {
+  background: var(--bg-3);
+  border-color: var(--border-md);
+}
+
+.slotNum {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-hi);
+}
+
+.slotEmpty {
+  font-size: 11px;
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.slotMeta {
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+  display: flex;
+  gap: 8px;
+}
+
+.slotOverwrite {
+  color: var(--coral);
+  font-style: italic;
+}
+
+.deleteBtn {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  border-radius: var(--r-sm);
+  background: var(--bg-3);
+  color: var(--text-lo);
+  font-size: 12px;
+  transition: background var(--t-fast), color var(--t-fast);
+}
+
+.deleteBtn:hover { background: var(--coral-lo); color: var(--coral); }

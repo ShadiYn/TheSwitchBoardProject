@@ -1,0 +1,78 @@
+[
+  {
+    "id": "vlad_01",
+    "callerId": "vladímir",
+    "shift": 3,
+    "moodOnAnswer": "dignified",
+    "notebookSummary": "Vladímir Sorokin. Vampiro. 340 años. Problemas con el padrón municipal.",
+    "nodes": [
+      { "id": "v01_n1", "type": "dialogue", "speaker": "caller", "text": "Buenas noches. Me llamo Vladímir Sorokin. Tengo un problema administrativo de cierta urgencia.", "next": "v01_n2" },
+      { "id": "v01_n2", "type": "dialogue", "speaker": "caller", "text": "Intento empadronarme en este municipio desde hace cuatro meses. El sistema no acepta mi año de nacimiento. Nací en 1683.", "next": "v01_choice1" },
+      {
+        "id": "v01_choice1", "type": "choice",
+        "choices": [
+          { "id": "v01_c_hr", "text": "Eso es competencia de Relaciones Humanas. Les paso.", "statEffect": { "efficiency": 2 }, "next": "v01_hr_end" },
+          { "id": "v01_c_ask_age", "text": "¿Cuántos años lleva usted... viviendo?", "statEffect": { "curiosity": 2, "empathy": 1 }, "relEffect": { "vladímir": 2 }, "next": "v01_age_branch" },
+          { "id": "v01_c_workaround", "text": "El sistema tiene un campo manual para fechas especiales. ¿Ha intentado la vía de 'entidad histórica'?", "statEffect": { "efficiency": 2, "curiosity": 1 }, "relEffect": { "vladímir": 3 }, "next": "v01_workaround_end" }
+        ]
+      },
+      { "id": "v01_age_branch", "type": "dialogue", "speaker": "caller", "text": "Trescientos cuarenta y dos años, si contamos desde el nacimiento humano. Ciento ochenta desde la transformación.", "next": "v01_age2" },
+      { "id": "v01_age2", "type": "dialogue", "speaker": "caller", "text": "La burocracia moderna es, con diferencia, lo más exasperante que he vivido. Y he vivido la Inquisición.", "next": "v01_workaround_end" },
+      { "id": "v01_hr_end", "type": "end", "text": "Relaciones Humanas. Bien. Aunque el término 'humanas' me parece excluyente. Buenas noches.", "flagSet": {} },
+      { "id": "v01_workaround_end", "type": "end", "text": "Entidad histórica. ¿Existe esa categoría realmente? Qué alivio. Muchas gracias. Buenas noches.", "flagSet": { "vlad_revealed_age": true } }
+    ]
+  },
+  {
+    "id": "vlad_02",
+    "callerId": "vladímir",
+    "shift": 6,
+    "moodOnAnswer": "melancholy",
+    "notebookSummary": "Vladímir llama en plena crisis existencial. ¿Qué sentido tiene la inmortalidad?",
+    "nodes": [
+      { "id": "v02_n1", "type": "dialogue", "speaker": "caller", "text": "Soy Vladímir. No llamo por un problema práctico esta vez. Llamo porque... no sé con quién más hablar.", "next": "v02_n2" },
+      { "id": "v02_n2", "type": "dialogue", "speaker": "caller", "text": "Llevo trescientos cuarenta años viendo cómo las personas que conozco envejecen y se van. Y yo sigo aquí.", "next": "v02_choice1" },
+      {
+        "id": "v02_choice1", "type": "choice",
+        "choices": [
+          { "id": "v02_c_listen", "text": "¿Quiere hablar de ello?", "statEffect": { "empathy": 3 }, "relEffect": { "vladímir": 5 }, "next": "v02_listen_branch" },
+          { "id": "v02_c_psych", "text": "Quizás Servicios Psicológicos podría...", "statEffect": { "efficiency": 1 }, "relEffect": { "vladímir": -1 }, "next": "v02_psych_end" }
+        ]
+      },
+      { "id": "v02_listen_branch", "type": "dialogue", "speaker": "caller", "text": "Conocí al Switchboard hace tiempo. Mucho tiempo. Cuando todavía no era lo que es ahora.", "next": "v02_listen2" },
+      { "id": "v02_listen2", "type": "dialogue", "speaker": "caller", "text": "Entonces era un lugar físico. Una centralita en una calle que ya no existe. El operador de entonces... era un hombre muy joven.", "next": "v02_choice2" },
+      {
+        "id": "v02_choice2", "type": "choice",
+        "choices": [
+          { "id": "v02_c_operator", "text": "¿Conoció al operador original?", "statEffect": { "curiosity": 4 }, "relEffect": { "vladímir": 3 }, "flagSet": { "vlad_knows_history": true }, "next": "v02_operator_branch" },
+          { "id": "v02_c_comfort", "text": "Parece que lleva mucho peso solo.", "statEffect": { "empathy": 2 }, "next": "v02_comfort_end" }
+        ]
+      },
+      { "id": "v02_operator_branch", "type": "dialogue", "speaker": "caller", "text": "Lo conocí. Prometió que el Switchboard ayudaría a la gente. Conectar a quien necesitara ayuda con quien pudiera dársela. Una idea noble.", "next": "v02_op2" },
+      { "id": "v02_op2", "type": "end", "text": "Pero algo salió mal. No sé qué. Y ahora el Switchboard no conecta personas. Atrapa operadores. Buenas noches.", "flagSet": { "vlad_knows_history": true, "switchboard_origin_hinted": true } },
+      { "id": "v02_psych_end", "type": "end", "text": "Servicios Psicológicos. ¿Atienden a inmortales? Supongo que lo son todo. Buenas noches.", "flagSet": {} },
+      { "id": "v02_comfort_end", "type": "end", "text": "Trescientos cuarenta años solo. Sí. Gracias por escuchar. Buenas noches.", "flagSet": { "vlad_confided": true } }
+    ]
+  },
+  {
+    "id": "vlad_03",
+    "callerId": "vladímir",
+    "shift": 11,
+    "moodOnAnswer": "urgent",
+    "unlockCondition": { "flagSet": "vlad_revealed_age" },
+    "notebookSummary": "Vladímir: encontró los registros originales del Switchboard. El operador original sigue atrapado. Lleva décadas siendo un caller.",
+    "nodes": [
+      { "id": "v03_n1", "type": "dialogue", "speaker": "caller", "text": "He encontrado algo. Entre mis archivos personales, de hace noventa años.", "next": "v03_n2" },
+      { "id": "v03_n2", "type": "dialogue", "speaker": "caller", "text": "Un documento del Switchboard original. La firma del fundador: Ernesto Cifuentes, Operador 1. Y una nota: 'Si alguien lee esto, que sepa que sigo dentro.'", "next": "v03_choice1" },
+      {
+        "id": "v03_choice1", "type": "choice",
+        "choices": [
+          { "id": "v03_c_cronista", "text": "¿Ernesto Cifuentes? ¿Sabe si sigue llamando?", "statEffect": { "curiosity": 4 }, "flagSet": { "cronista_identity_known": true }, "next": "v03_cronista_end" },
+          { "id": "v03_c_help", "text": "¿Hay algo en el documento sobre cómo liberarle?", "statEffect": { "empathy": 2, "curiosity": 2 }, "next": "v03_help_branch" }
+        ]
+      },
+      { "id": "v03_cronista_end", "type": "end", "text": "Un anciano que llama desde distintos años. Sí. Eso podría ser él. El Switchboard le usa como anclaje temporal. Buenas noches, operador. Cuídese.", "flagSet": { "cronista_identity_known": true, "vlad_revealed_lore": true } },
+      { "id": "v03_help_branch", "type": "dialogue", "speaker": "caller", "text": "Hay una frase subrayada: 'El Switchboard solo puede retenerte si no sabes que puede hacerlo. El conocimiento es la salida.'", "next": "v03_help_end" },
+      { "id": "v03_help_end", "type": "end", "text": "No sé si es metafórico o literal. Pero Ernesto lo subrayó tres veces. Buenas noches.", "flagSet": { "knowledge_is_exit_known": true, "vlad_revealed_lore": true } }
+    ]
+  }
+]

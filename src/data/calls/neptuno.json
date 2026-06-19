@@ -1,0 +1,167 @@
+[
+  {
+    "id": "neptuno_01",
+    "callerId": "neptuno_jr",
+    "shift": 9,
+    "moodOnAnswer": "anxious_fast",
+    "notebookSummary": "Neptuno Jr. Dios menor del mar. Ansiedad social severa. Llama porque sus olas están saliendo mal en eventos sociales.",
+    "nodes": [
+      {
+        "id": "np01_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Hola-perdona-sé-que-es-tarde-soy-Neptuno-el-dios-del-mar-bueno-dios-menor-en-realidad-mi-padre-es-el-grande-yo-soy-más-bien-un-dios-de-los-lagos-pequeños.",
+        "next": "np01_n2"
+      },
+      {
+        "id": "np01_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Perdona. Hablo rápido cuando estoy nervioso. Que es siempre. El problema es que tengo que hacer olas para un evento social mañana y cada vez que me pongo nervioso las olas me salen irregulares.",
+        "next": "np01_choice1"
+      },
+      {
+        "id": "np01_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "np01_c_breathe", "text": "Respira, Neptuno. ¿Qué tipo de evento es?",
+            "statEffect": { "empathy": 2 },
+            "relEffect": { "neptuno_jr": 3 },
+            "next": "np01_breathe_branch"
+          },
+          {
+            "id": "np01_c_psych", "text": "Servicios Psicológicos puede ayudar con la ansiedad social.",
+            "statEffect": { "efficiency": 2 },
+            "relEffect": { "neptuno_jr": 1 },
+            "next": "np01_psych_end"
+          },
+          {
+            "id": "np01_c_waves", "text": "¿Qué significa exactamente 'olas irregulares'?",
+            "statEffect": { "curiosity": 2, "empathy": 1 },
+            "relEffect": { "neptuno_jr": 2 },
+            "next": "np01_waves_branch"
+          }
+        ]
+      },
+      {
+        "id": "np01_breathe_branch", "type": "dialogue", "speaker": "caller",
+        "text": "La boda de una nereida. Que es hija de un primo de mi padre, así que técnicamente ni siquiera tengo que hacer olas, pero no quiero quedar mal.",
+        "next": "np01_b2"
+      },
+      {
+        "id": "np01_b2", "type": "dialogue", "speaker": "caller",
+        "text": "Que conste que los dioses del mar también nos ponemos nerviosos. No es solo cosa de humanos. Aunque los humanos a veces tampoco lo creen.",
+        "next": "np01_choice2"
+      },
+      {
+        "id": "np01_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "np01_c_practice", "text": "¿Has practicado con las olas en un ambiente relajado?",
+            "statEffect": { "empathy": 2, "efficiency": 1 },
+            "relEffect": { "neptuno_jr": 4 },
+            "next": "np01_practice_end"
+          },
+          {
+            "id": "np01_c_nobody_cares", "text": "En las bodas nadie mira las olas. Están mirando a los novios.",
+            "statEffect": { "empathy": 1 },
+            "relEffect": { "neptuno_jr": 3 },
+            "next": "np01_care_end"
+          }
+        ]
+      },
+      {
+        "id": "np01_practice_end", "type": "end",
+        "text": "Practicar... sí... en mi lago pequeño a lo mejor... gracias. Eso parece sensato. Oye, siento haber llamado tan tarde. Muchas gracias de verdad. Adiós-buenas-noches-cuídate.",
+        "flagSet": {}
+      },
+      {
+        "id": "np01_care_end", "type": "end",
+        "text": "¿En serio? ¿No miran las olas? Eso... eso es un alivio enorme. Gracias. Buenas noches. Adiós. Gracias otra vez.",
+        "flagSet": {}
+      },
+      {
+        "id": "np01_waves_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Que salen con espuma cuando no deben. O demasiado altas. O con ese sonido raro que hace el mar cuando está incómodo.",
+        "next": "np01_b2"
+      },
+      {
+        "id": "np01_psych_end", "type": "end",
+        "text": "Servicios Psicológicos. Sí. Nunca he ido. Los dioses menores a veces creemos que no deberíamos necesitar ayuda. Pero quizás... gracias. Buenas noches.",
+        "flagSet": {}
+      }
+    ]
+  },
+  {
+    "id": "neptuno_02",
+    "callerId": "neptuno_jr",
+    "shift": 14,
+    "moodOnAnswer": "nervous_but_important",
+    "notebookSummary": "Neptuno Jr.: la boda fue bien. Llama para dar las gracias. Y porque tiene información sobre el plano dimensional del Switchboard.",
+    "nodes": [
+      {
+        "id": "np02_n1", "type": "dialogue", "speaker": "caller",
+        "text": "Soy Neptuno otra vez. La boda fue bien. Las olas salieron casi perfectas. Bueno, la del final salió un poco alta pero nadie se mojó demasiado.",
+        "next": "np02_n2"
+      },
+      {
+        "id": "np02_n2", "type": "dialogue", "speaker": "caller",
+        "text": "Llamo para dar las gracias. Y porque... hay algo que creo que debería saber.",
+        "next": "np02_choice1"
+      },
+      {
+        "id": "np02_choice1", "type": "choice",
+        "choices": [
+          {
+            "id": "np02_c_happy", "text": "Me alegra que la boda saliera bien. ¿Qué es lo que quieres contarme?",
+            "statEffect": { "empathy": 2, "curiosity": 1 },
+            "relEffect": { "neptuno_jr": 4 },
+            "next": "np02_happy_branch"
+          },
+          {
+            "id": "np02_c_what", "text": "¿Qué información tienes?",
+            "statEffect": { "curiosity": 2 },
+            "next": "np02_what_branch"
+          }
+        ]
+      },
+      {
+        "id": "np02_happy_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Los dioses del mar percibimos los planos dimensionales. Es como... como sentir la corriente. Y el Switchboard tiene una corriente muy extraña.",
+        "next": "np02_h2"
+      },
+      {
+        "id": "np02_h2", "type": "dialogue", "speaker": "caller",
+        "text": "Existe en varios planos a la vez. Pero tiene un ancla. Un punto fijo. Sin el ancla, el Switchboard se disolvería. El ancla es el operador.",
+        "next": "np02_choice2"
+      },
+      {
+        "id": "np02_choice2", "type": "choice",
+        "choices": [
+          {
+            "id": "np02_c_anchor_remove", "text": "¿Cómo se quita el ancla?",
+            "statEffect": { "curiosity": 3 },
+            "flagSet": { "anchor_theory_known": true },
+            "next": "np02_anchor_end"
+          },
+          {
+            "id": "np02_c_anchor_why", "text": "¿Por qué el operador es el ancla?",
+            "statEffect": { "curiosity": 2 },
+            "next": "np02_why_branch"
+          }
+        ]
+      },
+      {
+        "id": "np02_anchor_end", "type": "end",
+        "text": "El ancla no se quita. Cambia. Si el operador deja de ser el punto central —si tiene suficientes conexiones externas— el Switchboard pierde el ancla y el operador queda libre. Sé feliz. Buenas noches.",
+        "flagSet": { "anchor_theory_known": true, "neptuno_ally": true }
+      },
+      {
+        "id": "np02_why_branch", "type": "end",
+        "text": "Porque el operador es el único que escucha de verdad. Y lo que escucha activamente da forma al plano. El Switchboard existe porque alguien lo escucha existir. Si dejaras de creer en él... pero eso es complicado. Buenas noches.",
+        "flagSet": { "neptuno_ally": true }
+      },
+      {
+        "id": "np02_what_branch", "type": "dialogue", "speaker": "caller",
+        "text": "Ah. Claro. Directo al grano. Los dioses del mar también podemos hacer eso.",
+        "next": "np02_h2"
+      }
+    ]
+  }
+]

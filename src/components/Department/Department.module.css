@@ -1,0 +1,76 @@
+.panel {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-lo);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.deptBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-lo);
+  border-radius: var(--r-md);
+  text-align: left;
+  transition: background var(--t-fast), border-color var(--t-fast);
+}
+
+.deptBtn:hover {
+  background: var(--bg-3);
+  border-color: var(--border-md);
+}
+
+.deptBtn.unknown {
+  border-color: var(--amber-dim);
+  background: var(--amber-lo);
+}
+
+.deptBtn.unknown:hover {
+  border-color: var(--amber);
+}
+
+.emoji { font-size: 20px; }
+
+.deptInfo { display: flex; flex-direction: column; gap: 2px; }
+.deptName { font-size: 12px; font-weight: 600; color: var(--text-hi); }
+.deptExt  { font-size: 10px; color: var(--text-lo); font-family: var(--font-mono); }
+
+/* confirmation card */
+.deptCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--bg-2);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-md);
+}
+
+.confirmBtn {
+  padding: 10px 18px;
+  background: var(--teal-lo);
+  border: 0.5px solid var(--teal);
+  border-radius: var(--r-md);
+  font-size: 13px;
+  font-weight: 600;
+  color: #4ecba0;
+  transition: background var(--t-fast);
+}
+
+.confirmBtn:hover { background: rgba(26,140,106,0.22); }
