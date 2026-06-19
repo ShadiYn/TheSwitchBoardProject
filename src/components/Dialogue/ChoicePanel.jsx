@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { getVisibleChoices } from '@/engines/flagEngine'
+import { useBlip } from '@/hooks/useAudio'
 import styles from './Dialogue.module.css'
 
 export default function ChoicePanel() {
@@ -10,6 +11,8 @@ export default function ChoicePanel() {
   const stats      = useGameStore(s => s.stats)
   const runNumber  = useGameStore(s => s.runNumber)
   const makeChoice = useGameStore(s => s.makeChoice)
+
+  const blip = useBlip()
 
   if (gamePhase !== 'CHOOSING' || !activeNode?.choices) return null
 
@@ -23,7 +26,7 @@ export default function ChoicePanel() {
           <button
             key={c.id}
             className={styles.choiceBtn}
-            onClick={() => makeChoice(c)}
+            onClick={() => { blip(); makeChoice(c) }}
           >
             <span className={styles.choiceArrow}>›</span>
             <span>{c.text}</span>

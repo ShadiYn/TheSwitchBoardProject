@@ -1,7 +1,8 @@
 import React from 'react'
 import { useGameStore } from '@/store/gameStore'
-import TitleScreen from '@/screens/TitleScreen'
-import GameScreen from '@/screens/GameScreen'
+import TitleScreen  from '@/screens/TitleScreen'
+import IntroScreen  from '@/screens/IntroScreen'
+import GameScreen   from '@/screens/GameScreen'
 import EndingScreen from '@/screens/EndingScreen'
 
 export default function App() {
@@ -10,9 +11,10 @@ export default function App() {
 
   return (
     <div className={`app-root ${settings.crtEnabled ? 'crt-on' : ''}`}>
-      {gamePhase === 'TITLE'   && <TitleScreen />}
-      {gamePhase === 'ENDING'  && <EndingScreen />}
-      {!['TITLE','ENDING'].includes(gamePhase) && <GameScreen />}
+      {gamePhase === 'TITLE'  && <TitleScreen />}
+      {gamePhase === 'INTRO'  && <IntroScreen />}
+      {gamePhase === 'ENDING' && <EndingScreen />}
+      {!['TITLE','INTRO','ENDING'].includes(gamePhase) && <GameScreen />}
     </div>
   )
 }

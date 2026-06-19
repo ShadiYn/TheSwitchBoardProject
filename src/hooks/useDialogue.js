@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { playCharacterBlip } from '@/hooks/useAudio'
 
 const SPEED = { slow: 55, normal: 28, fast: 10, instant: 0 }
 
-export function useDialogue(fullText = '', speed = 'normal') {
+export function useDialogue(fullText = '', speed = 'normal', callerId = null) {
   const [displayed, setDisplayed] = useState(speed === 'instant' ? fullText : '')
   const [done,      setDone]      = useState(speed === 'instant')
   const idx   = useRef(0)
@@ -24,9 +25,14 @@ export function useDialogue(fullText = '', speed = 'normal') {
     const tick = () => {
       if (idx.current >= fullText.length) { setDone(true); return }
       idx.current++
-      setDisplayed(fullText.slice(0, idx.current))
-      // Slight pause on punctuation for dramatic effect
       const ch = fullText[idx.current - 1]
+      setDisplayed(fullText.slice(0, idx.current))
+
+      // Blip de voz por letra (solo si hay callerId y no es espacio/puntuación)
+      if (callerId && ch !== ' ' && ch !== '\n') {
+        playCharacterBlip(callerId, ch)
+      }
+
       const pause = (ch === '.' || ch === ',' || ch === '…') ? delay * 5 : delay
       timer.current = setTimeout(tick, pause)
     }

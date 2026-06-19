@@ -44,7 +44,7 @@ export const useGameStore = create(immer((set, get) => ({
   startNewGame: (slot) => set(s => {
     Object.assign(s, structuredClone(DEFAULT_STATE))
     s.saveSlot = slot
-    s.gamePhase = 'IDLE'
+    s.gamePhase = 'INTRO'
     s.shiftCallQueue = buildCallQueue(1, {}, {}, 1)
   }),
 
@@ -63,6 +63,8 @@ export const useGameStore = create(immer((set, get) => ({
   beginShift: () => set(s => {
     if (s.gamePhase === 'IDLE' && s.shiftCallQueue.length > 0) s.gamePhase = 'RINGING'
   }),
+
+  endIntro: () => set(s => { s.gamePhase = 'IDLE' }),
 
   answerCall: (callData) => set(s => {
     s.activeCall = callData

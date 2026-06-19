@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { loadCall } from '@/engines/callQueue'
+import { useBlip, useFlipPage, usePhoneTone } from '@/hooks/useAudio'
 import styles from './Office.module.css'
 
 const CALLER_NAMES = {
@@ -32,6 +33,25 @@ export default function OfficeScene() {
   const finishCall       = useGameStore(s => s.finishCall)
   const officeState      = useGameStore(s => s.officeState)
 
+  const blip      = useBlip()
+  const flipPage  = useFlipPage()
+  const phoneTone = usePhoneTone()
+
+  // Tono de teléfono mientras suena
+  useEffect(() => {
+    if (gamePhase === 'RINGING') phoneTone.play()
+    else phoneTone.stop()
+    return () => phoneTone.stop()
+  }, [gamePhase])
+
+  // Auto-disparo del teléfono tras delay random en IDLE
+  useEffect(() => {
+    if (gamePhase !== 'IDLE') return
+    const delay = 2500 + Math.random() * 2500 // 2.5s – 5s
+    const t = setTimeout(() => beginShift(), delay)
+    return () => clearTimeout(t)
+  }, [gamePhase])
+
   const [callData, setCallData] = useState(null)
   const [ring, setRing]         = useState(0)
   const [popup, setPopup]       = useState(null)
@@ -56,8 +76,9 @@ export default function OfficeScene() {
   const callerName = callData ? (CALLER_NAMES[callData.callerId] ?? callData.callerId) : null
 
   function handlePhoneClick() {
-    if (isRinging && callData) answerCall(callData)
-    else if (!isRinging) beginShift()
+    if (!isRinging || !callData) return
+    blip()
+    answerCall(callData)
   }
 
   return (
@@ -78,26 +99,22 @@ export default function OfficeScene() {
           className={styles.deskImg}
         />
 
-        {/* ── Hotspot teléfono ── */}
-        <button
-          className={`${styles.hotspot} ${styles.hotspotPhone} ${isRinging ? styles.hotspotRinging : ''}`}
-          onClick={handlePhoneClick}
-          title={isRinging ? 'Descolgar' : 'Contestar teléfono'}
-        >
-          {isRinging && (
+        {/* ── Hotspot teléfono — solo visible al sonar ── */}
+        {isRinging && (
+          <button
+            className={`${styles.hotspot} ${styles.hotspotPhone} ${styles.hotspotRinging}`}
+            onClick={handlePhoneClick}
+            title="Descolgar"
+          >
             <div className={styles.ringPulse} />
-          )}
-          {isRinging && callerName && (
-            <div className={styles.callerBubble}>{callerName}</div>
-          )}
-          {isRinging && (
+            {callerName && <div className={styles.callerBubble}>{callerName}</div>}
             <div className={styles.ringDots}>
               {[0,1,2].map(i => (
                 <span key={i} className={`${styles.ringDot} ${ring % 3 === i ? styles.ringDotActive : ''}`} />
               ))}
             </div>
-          )}
-        </button>
+          </button>
+        )}
 
         {/* Anomalías */}
         {officeState.lightFlicker && (

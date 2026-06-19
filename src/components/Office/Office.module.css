@@ -93,6 +93,51 @@
   border: 1.5px solid rgba(212, 144, 10, 0.3);
 }
 
+/* Idle: pulso suave sobre el teléfono colgado */
+.hotspotIdle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  border: 1.5px solid rgba(212,144,10,0.25);
+  animation: idleGlow 2.5s ease-in-out infinite;
+}
+
+@keyframes idleGlow {
+  0%, 100% { border-color: rgba(212,144,10,0.15); box-shadow: none; }
+  50%       { border-color: rgba(212,144,10,0.45); box-shadow: 0 0 12px rgba(212,144,10,0.15); }
+}
+
+.idlePulse {
+  position: absolute;
+  inset: 20%;
+  border-radius: 50%;
+  border: 1.5px solid var(--amber-dim);
+  animation: pulseRing 2.5s ease-out infinite;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.idleHint {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-3);
+  border: 0.5px solid var(--border-md);
+  border-radius: var(--r-md);
+  padding: 4px 10px;
+  font-size: 11px;
+  color: var(--text-lo);
+  font-family: var(--font-mono);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.hotspotIdle:hover .idleHint { opacity: 1; }
+
 /* Ringing: zona se desplaza al auricular en el centro */
 .hotspotRinging {
   left: 33%;

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useGameStore } from '@/store/gameStore'
+import { useBlip, useFlipPage } from '@/hooks/useAudio'
 import styles from './Notebook.module.css'
 
 export default function NotebookPanel() {
@@ -7,6 +8,10 @@ export default function NotebookPanel() {
   const cluesFound      = useGameStore(s => s.cluesFound)
   const currentShift    = useGameStore(s => s.currentShift)
   const [tab, setTab]   = useState('log')
+  const blip     = useBlip()
+  const flipPage = useFlipPage()
+
+  function changeTab(t) { flipPage(); setTab(t) }
 
   return (
     <aside className={styles.panel}>
@@ -16,8 +21,8 @@ export default function NotebookPanel() {
       </div>
 
       <div className={styles.tabs}>
-        <button className={`${styles.tab} ${tab==='log'?styles.active:''}`} onClick={() => setTab('log')}>Registro</button>
-        <button className={`${styles.tab} ${tab==='clues'?styles.active:''}`} onClick={() => setTab('clues')}>
+        <button className={`${styles.tab} ${tab==='log'?styles.active:''}`} onClick={() => changeTab('log')}>Registro</button>
+        <button className={`${styles.tab} ${tab==='clues'?styles.active:''}`} onClick={() => changeTab('clues')}>
           Pistas {cluesFound.length > 0 && <span className={styles.badge}>{cluesFound.length}</span>}
         </button>
       </div>

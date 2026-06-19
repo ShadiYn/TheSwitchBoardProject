@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useGameStore } from '@/store/gameStore'
 import { useDialogue } from '@/hooks/useDialogue'
+import { useBlip } from '@/hooks/useAudio'
 import styles from './Dialogue.module.css'
 
 export default function DialoguePanel() {
@@ -11,7 +12,11 @@ export default function DialoguePanel() {
   const advanceNode = useGameStore(s => s.advanceNode)
 
   const text = activeNode?.text ?? ''
-  const { displayed, done, skip } = useDialogue(text, settings.textSpeed)
+  const callerId = activeNode?.speaker === 'caller' ? activeCall?.callerId : null
+  const { displayed, done, skip } = useDialogue(text, settings.textSpeed, callerId)
+  const blip = useBlip()
+
+  function handleSkip() { skip() }
 
   // Auto-advance system nodes
   useEffect(() => {
@@ -31,7 +36,7 @@ export default function DialoguePanel() {
   }[activeNode.speaker ?? 'caller']
 
   return (
-    <div className={styles.panel} onClick={done ? undefined : skip}>
+    <div className={styles.panel} onClick={done ? undefined : handleSkip}>
       <div className={`${styles.bubble} ${styles[activeNode.speaker ?? 'caller']}`}>
         {speakerLabel && (
           <div className={styles.speaker}>{speakerLabel}</div>
@@ -45,14 +50,14 @@ export default function DialoguePanel() {
       {done && activeNode.next && activeNode.type !== 'system' && (
         <button
           className={styles.continueBtn}
-          onClick={() => advanceNode(activeNode.next)}
+          onClick={() => { blip(); advanceNode(activeNode.next) }}
         >
           Continuar ↓
         </button>
       )}
 
       {!done && (
-        <button className={styles.skipBtn} onClick={skip}>
+        <button className={styles.skipBtn} onClick={handleSkip}>
           [Saltar]
         </button>
       )}

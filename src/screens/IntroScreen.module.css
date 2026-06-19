@@ -1,0 +1,152 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  cursor: default;
+  z-index: 50;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* ── Escena 0: imagen full ── */
+.fullImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+/* ── Escena 1: nota ── */
+.noteScene {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  padding: 40px;
+  background: #0a0906;
+}
+
+.noteWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.noteImg {
+  width: min(380px, 80vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 32px rgba(0,0,0,0.8));
+}
+
+/* Texto encima de la nota */
+.noteText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Caveat', cursive;
+  font-size: clamp(13px, 2.5vw, 18px);
+  color: #2e2416;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  text-align: left;
+  padding: 18% 14% 10%;
+  pointer-events: none;
+}
+
+/* Caja de diálogo */
+.dialogueBox {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: 'Courier New', monospace;
+  font-size: clamp(12px, 1.8vw, 15px);
+  color: var(--text-md);
+  max-width: 520px;
+  width: 100%;
+  text-align: left;
+  flex-wrap: wrap;
+  min-height: 2em;
+}
+
+.cursor {
+  color: var(--amber);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.playerText {
+  color: var(--text-hi);
+}
+
+.continueHint {
+  color: var(--text-dim);
+  font-size: 11px;
+  margin-left: 10px;
+  animation: blink 1.2s ease-in-out infinite;
+  white-space: nowrap;
+}
+
+/* Dots de progreso */
+.lineCounter {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--text-dim);
+  transition: background 0.2s, transform 0.2s;
+}
+
+.dotActive {
+  background: var(--amber);
+  transform: scale(1.4);
+}
+
+.dotDone {
+  background: var(--text-lo);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.2; }
+}
+
+/* ── Escena 2: title card ── */
+.titleCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.titleText {
+  font-family: 'Courier New', monospace;
+  font-size: clamp(16px, 3vw, 24px);
+  color: var(--text-md);
+  letter-spacing: 0.15em;
+  text-transform: lowercase;
+  animation: fadeInText 1s ease forwards;
+}
+
+@keyframes fadeInText {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
